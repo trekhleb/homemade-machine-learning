@@ -1,2 +1,3 @@
-# machine-learning-python
+# Machine Learning in Python
+
 In progress...
