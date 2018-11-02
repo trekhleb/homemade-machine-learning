@@ -13,35 +13,44 @@ DATA = np.genfromtxt('./data/house-prices.csv', delimiter=',')
 X = DATA[:, 0:2]
 Y = DATA[:, 2:]
 
-# Plot the data.
-FIGURE = plot.figure()
-AX = FIGURE.add_subplot(111, projection='3d')
-AX.scatter(X[:, :1], X[:, 1:2], Y, c='r', marker='o')
-AX.set_xlabel('Size')
-AX.set_ylabel('Rooms')
-AX.set_zlabel('Price')
-plot.show()
-
 # Init linear regression.
 LINEAR_REGRESSION = LinearRegression(X, Y)
 
 # Train linear regression.
+NUM_ITERATIONS = 30
+LAMBDA_PARAM = 0
+ALPHA = 0.1
+
 (
     THETA,
     FEATURES_MEAN,
     FEATURES_DEVIATION,
     TRAINING_SET_NORMALIZED,
     COST_HISTORY
-) = LINEAR_REGRESSION.train(alpha=0.1, lambda_param=0, num_iterations=50)
+) = LINEAR_REGRESSION.train(ALPHA, LAMBDA_PARAM, NUM_ITERATIONS)
 
-print('- Initial cost: {0}\n'.format(COST_HISTORY[0]))
-print('- Optimized cost: {0}\n'.format(COST_HISTORY[-1:]))
+print('Initial cost: {0}\n'.format(COST_HISTORY[0]))
+print('Optimized cost: {0}\n'.format(COST_HISTORY[-1:]))
 
-print('- Theta (with normalization):\n')
-print('-- {0}\n'.format(THETA))
-print('\n')
+print('Theta:\n')
+print('- {0}\n'.format(THETA))
 
-# Data for plotting
-FIG, AX = plot.subplots()
-AX.plot(range(50), COST_HISTORY)
+# Plot the data.
+FIGURE = plot.figure(1, figsize=(10, 5))
+
+# Plot the training set.
+AX1 = FIGURE.add_subplot(121, projection='3d', title='Training Set')
+AX1.scatter(X[:, :1], X[:, 1:2], Y, c='r', marker='o')
+AX1.set_xlabel('Size')
+AX1.set_ylabel('Rooms')
+AX1.set_zlabel('Price')
+
+# Plot gradient descent progress.
+AX2 = FIGURE.add_subplot(122, title='Gradient Descent')
+AX2.plot(range(NUM_ITERATIONS), COST_HISTORY)
+AX2.set_xlabel('Iterations')
+AX2.set_ylabel('Cost')
+AX2.grid(False)
+
+plot.suptitle('Linear Regression')
 plot.show()
