@@ -1,0 +1,13 @@
+astroid==2.0.4
+cycler==0.10.0
+isort==4.3.4
+kiwisolver==1.0.1
+lazy-object-proxy==1.3.1
+matplotlib==3.0.1
+mccabe==0.6.1
+numpy==1.15.3
+pylint==2.1.1
+pyparsing==2.3.0
+python-dateutil==2.7.5
+six==1.11.0
+wrapt==1.10.11

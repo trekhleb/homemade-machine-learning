@@ -1,3 +1,9 @@
 # Machine Learning in Python
 
-In progress...
+> The work is in progress...
+
+PyLint
+
+```bash
+pylint ./src/
+```
