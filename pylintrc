@@ -15,8 +15,7 @@ ignore-patterns=
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-# @TODO: Figure out how to AVOID HARD-CODING of sys.path in order to make pylint work with relative module imports
-init-hook='sys.path.append('./src/modules')'
+#init-hook=
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.
