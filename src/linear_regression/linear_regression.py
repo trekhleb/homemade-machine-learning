@@ -96,16 +96,16 @@ class LinearRegression:
         predictions = self.hypothesis(theta)
 
         # The difference between predictions and actual values for all m examples.
-        difference = predictions - self.labels
+        delta = predictions - self.labels
 
         # Calculate regularization parameter.
-        regularization_param = 1 - alpha * lambda_param / num_examples
+        reg_param = 1 - alpha * lambda_param / num_examples
 
         # Vectorized version of gradient descent.
-        theta = theta * regularization_param - alpha * (1 / num_examples) * (difference.T @ self.training_set).T
+        theta = theta * reg_param - alpha * (1 / num_examples) * (delta.T @ self.training_set).T
 
         # We should NOT regularize the parameter theta_zero.
-        theta[1] = theta[1] - alpha * (1 / num_examples) * (self.training_set[:, 0].T @ difference).T
+        theta[1] = theta[1] - alpha * (1 / num_examples) * (self.training_set[:, 0].T @ delta).T
 
         return theta
 
@@ -122,15 +122,15 @@ class LinearRegression:
         (num_examples, _) = self.training_set.shape
 
         # Get the difference between predictions and correct output values.
-        differences = self.hypothesis(theta) - self.labels
+        delta = self.hypothesis(theta) - self.labels
 
         # Calculate regularization parameter.
         # Remember that we should not regularize the parameter theta_zero.
         theta_cut = theta[1:, 0]
-        regularization_param = lambda_param * (theta_cut.T @ theta_cut)
+        reg_param = lambda_param * (theta_cut.T @ theta_cut)
 
         # Calculate current predictions cost.
-        cost = (1 / 2 * num_examples) * (differences.T @ differences + regularization_param)
+        cost = (1 / 2 * num_examples) * (delta.T @ delta + reg_param)
 
         return cost
 
