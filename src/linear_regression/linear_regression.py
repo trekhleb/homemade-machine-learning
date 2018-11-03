@@ -158,7 +158,8 @@ class LinearRegression:
         :return: normalized set of features.
         """
 
-        training_set_normalized = training_set
+        # Copy original array to prevent it from changes.
+        training_set_normalized = np.copy(training_set)
 
         # Get average values for each feature (column) in X.
         features_mean = np.mean(training_set)
