@@ -162,10 +162,10 @@ class LinearRegression:
         training_set_normalized = np.copy(training_set)
 
         # Get average values for each feature (column) in X.
-        features_mean = np.mean(training_set)
+        features_mean = np.mean(training_set, 0)
 
         # Calculate the standard deviation for each feature.
-        features_deviation = np.std(training_set)
+        features_deviation = np.std(training_set, 0)
 
         # Subtract mean values from each feature (column) of every example (row)
         # to make all features be spread around zero.

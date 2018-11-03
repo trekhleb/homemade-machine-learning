@@ -7,3 +7,9 @@ PyLint
 ```bash
 pylint ./src/
 ```
+
+Demo
+
+```bash
+python ./src/linear_regression/demo.py
+```

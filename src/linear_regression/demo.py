@@ -29,6 +29,9 @@ ALPHA = 0.1
     COST_HISTORY
 ) = LINEAR_REGRESSION.train(ALPHA, LAMBDA_PARAM, NUM_ITERATIONS)
 
+print(np.min(X[:, 0]))
+print(np.min(X[:, 1]))
+
 print('Initial cost: {0}\n'.format(COST_HISTORY[0]))
 print('Optimized cost: {0}\n'.format(COST_HISTORY[-1:]))
 
@@ -36,21 +39,28 @@ print('Theta:\n')
 print('- {0}\n'.format(THETA))
 
 # Plot the data.
-FIGURE = plot.figure(1, figsize=(10, 5))
+FIGURE = plot.figure(1, figsize=(8, 6))
 
 # Plot the training set.
-AX1 = FIGURE.add_subplot(121, projection='3d', title='Training Set')
+AX1 = FIGURE.add_subplot(221, projection='3d', title='Training Set')
 AX1.scatter(X[:, :1], X[:, 1:2], Y, c='r', marker='o')
 AX1.set_xlabel('Size')
 AX1.set_ylabel('Rooms')
 AX1.set_zlabel('Price')
 
+# Plot normalized training set.
+AX2 = FIGURE.add_subplot(222, projection='3d', title='Normalized Training Set')
+AX2.scatter(TRAINING_SET_NORMALIZED[:, 1:2], TRAINING_SET_NORMALIZED[:, 2:3], Y, c='r', marker='o')
+AX2.set_xlabel('Normalized Size')
+AX2.set_ylabel('Normalized Rooms')
+AX2.set_zlabel('Price')
+
 # Plot gradient descent progress.
-AX2 = FIGURE.add_subplot(122, title='Gradient Descent')
-AX2.plot(range(NUM_ITERATIONS), COST_HISTORY)
-AX2.set_xlabel('Iterations')
-AX2.set_ylabel('Cost')
-AX2.grid(False)
+AX3 = FIGURE.add_subplot(223, title='Gradient Descent')
+AX3.plot(range(NUM_ITERATIONS), COST_HISTORY)
+AX3.set_xlabel('Iterations')
+AX3.set_ylabel('Cost')
+AX3.grid(False)
 
 plot.suptitle('Linear Regression')
 plot.show()
