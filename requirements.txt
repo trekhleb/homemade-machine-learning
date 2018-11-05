@@ -1,4 +1,5 @@
+jupyter==1.0.0
 matplotlib==3.0.1
 numpy==1.15.3
 pylint==2.1.1
-jupyter==1.0.0
+scipy==1.1.0
