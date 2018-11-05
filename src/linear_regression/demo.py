@@ -7,7 +7,7 @@ import matplotlib.pyplot as plot
 from linear_regression import LinearRegression
 
 # Load the data.
-DATA = np.genfromtxt('./data/house-prices.csv', delimiter=',')
+DATA = np.genfromtxt('./data/house-prices.csv', delimiter=',', skip_header=True)
 
 # Split the by input and output.
 X = DATA[:, 0:2]
@@ -17,7 +17,7 @@ Y = DATA[:, 2:]
 LINEAR_REGRESSION = LinearRegression(X, Y)
 
 # Train linear regression.
-NUM_ITERATIONS = 30
+NUM_ITERATIONS = 50
 LAMBDA_PARAM = 0
 ALPHA = 0.1
 
@@ -28,9 +28,6 @@ ALPHA = 0.1
     TRAINING_SET_NORMALIZED,
     COST_HISTORY
 ) = LINEAR_REGRESSION.train(ALPHA, LAMBDA_PARAM, NUM_ITERATIONS)
-
-print(np.min(X[:, 0]))
-print(np.min(X[:, 1]))
 
 print('Initial cost: {0}\n'.format(COST_HISTORY[0]))
 print('Optimized cost: {0}\n'.format(COST_HISTORY[-1:]))
