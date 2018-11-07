@@ -14,7 +14,7 @@ class LinearRegression:
         """
 
         # Calculate the number of training examples and features.
-        (num_examples, _) = training_set.shape
+        num_examples = training_set.shape[0]
 
         # Normalize features.
         (
@@ -40,7 +40,7 @@ class LinearRegression:
         """
 
         # Calculate the number of training examples and features.
-        (_, num_features) = self.training_set.shape
+        num_features = self.training_set.shape[1]
 
         # Initialize model parameters.
         initial_theta = np.zeros((num_features, 1))
@@ -68,14 +68,14 @@ class LinearRegression:
         """
 
         # Initialize J_history with zeros.
-        cost_history = np.zeros((num_iterations, 1))
+        cost_history = []
 
         for iteration in range(num_iterations):
             # Perform a single gradient step on the parameter vector theta.
             theta = self.gradient_step(theta, alpha, lambda_param)
 
             # Save the cost J in every iteration.
-            cost_history[iteration] = self.cost_function(theta, lambda_param)
+            cost_history.append(self.cost_function(theta, lambda_param))
 
         return theta, cost_history
 
@@ -90,7 +90,7 @@ class LinearRegression:
         """
 
         # Calculate the number of training examples and features.
-        (num_examples, _) = self.training_set.shape
+        num_examples = self.training_set.shape[0]
 
         # Predictions of hypothesis on all m examples.
         predictions = self.hypothesis(theta)
@@ -119,7 +119,7 @@ class LinearRegression:
         """
 
         # Calculate the number of training examples and features.
-        (num_examples, _) = self.training_set.shape
+        num_examples = self.training_set.shape[0]
 
         # Get the difference between predictions and correct output values.
         delta = self.hypothesis(theta) - self.labels
@@ -132,7 +132,8 @@ class LinearRegression:
         # Calculate current predictions cost.
         cost = (1 / 2 * num_examples) * (delta.T @ delta + reg_param)
 
-        return cost
+        # Let's extract cost value from the one and only cost numpy matrix cell.
+        return cost[0][0]
 
     def hypothesis(self, theta):
         """Hypothesis function.
