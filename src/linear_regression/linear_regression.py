@@ -84,7 +84,7 @@ class LinearRegression:
         num_examples = self.training_set.shape[0]
 
         # Predictions of hypothesis on all m examples.
-        predictions = self.hypothesis()
+        predictions = self.hypothesis(self.training_set)
 
         # The difference between predictions and actual values for all m examples.
         delta = predictions - self.labels
@@ -114,7 +114,7 @@ class LinearRegression:
         num_examples = self.training_set.shape[0]
 
         # Get the difference between predictions and correct output values.
-        delta = self.hypothesis() - self.labels
+        delta = self.hypothesis(self.training_set) - self.labels
 
         # Calculate regularization parameter.
         # Remember that we should not regularize the parameter theta_zero.
@@ -127,50 +127,61 @@ class LinearRegression:
         # Let's extract cost value from the one and only cost numpy matrix cell.
         return cost[0][0]
 
-    def hypothesis(self):
+    def hypothesis(self, data_set):
         """Hypothesis function.
 
         It predicts the output values y based on the input values X and model parameters.
 
+        :param data_set: data set for what the predictions will be calculated.
         :return: predictions made by model based on provided theta.
         """
 
-        predictions = self.training_set @ self.theta
+        predictions = data_set @ self.theta
 
         return predictions
 
     def predict(self, data_set):
         """Predict the output for data_set input based on trained theta values"""
+
+        # Calculate the number of training examples and features.
+        num_examples = data_set.shape[0]
+
+        # Normalize features.
         (data_set_normalized, mean, deviation) = self.normalize_features(data_set)
-        predictions = data_set_normalized @ self.theta
+
+        # Add a column of ones to X.
+        data_set_normalized = np.hstack((np.ones((num_examples, 1)), data_set_normalized))
+
+        predictions = self.hypothesis(data_set_normalized)
+
         return predictions
 
     @staticmethod
-    def normalize_features(training_set):
+    def normalize_features(data_set):
         """Normalize input features.
 
         Normalizes the features in x. Returns a normalized version of x where the mean value of
         each feature is 0 and the standard deviation is 1.
 
-        :param training_set: training set of features.
+        :param data_set: training set of features.
         :return: normalized set of features.
         """
 
         # Copy original array to prevent it from changes.
-        training_set_normalized = np.copy(training_set)
+        data_set_normalized = np.copy(data_set)
 
         # Get average values for each feature (column) in X.
-        features_mean = np.mean(training_set, 0)
+        features_mean = np.mean(data_set, 0)
 
         # Calculate the standard deviation for each feature.
-        features_deviation = np.std(training_set, 0)
+        features_deviation = np.std(data_set, 0)
 
         # Subtract mean values from each feature (column) of every example (row)
         # to make all features be spread around zero.
-        training_set_normalized -= features_mean
+        data_set_normalized -= features_mean
 
         # Normalize each feature values for each example so that all features
         # are close to [-1:1] boundaries.
-        training_set_normalized /= features_deviation
+        data_set_normalized /= features_deviation
 
-        return training_set_normalized, features_mean, features_deviation
+        return data_set_normalized, features_mean, features_deviation
