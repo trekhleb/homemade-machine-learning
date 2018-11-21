@@ -18,7 +18,7 @@ class LinearRegression:
             training_set_normalized,
             features_mean,
             features_deviation
-        ) = self.prepare_data_set(training_set)
+        ) = LinearRegression.prepare_data(training_set)
 
         self.training_set = training_set_normalized
         self.labels = labels
@@ -61,7 +61,7 @@ class LinearRegression:
             self.gradient_step(alpha, lambda_param)
 
             # Save the cost J in every iteration.
-            cost_history.append(self.cost_function(lambda_param))
+            cost_history.append(self.cost_function(self.training_set, self.labels, lambda_param))
 
         return cost_history
 
@@ -78,7 +78,7 @@ class LinearRegression:
         num_examples = self.training_set.shape[0]
 
         # Predictions of hypothesis on all m examples.
-        predictions = self.hypothesis(self.training_set)
+        predictions = LinearRegression.hypothesis(self.training_set, self.theta)
 
         # The difference between predictions and actual values for all m examples.
         delta = predictions - self.labels
@@ -96,19 +96,21 @@ class LinearRegression:
 
         self.theta = theta
 
-    def cost_function(self, lambda_param):
+    def cost_function(self, data_set, labels, lambda_param):
         """Cost function.
 
         It shows how accurate our model is based on current model parameters.
 
+        :param data_set: the set of training or test data.
+        :param labels: training set outputs (correct values).
         :param lambda_param: regularization parameter
         """
 
         # Calculate the number of training examples and features.
-        num_examples = self.training_set.shape[0]
+        num_examples = data_set.shape[0]
 
         # Get the difference between predictions and correct output values.
-        delta = self.hypothesis(self.training_set) - self.labels
+        delta = LinearRegression.hypothesis(data_set, self.theta) - labels
 
         # Calculate regularization parameter.
         # Remember that we should not regularize the parameter theta_zero.
@@ -121,74 +123,80 @@ class LinearRegression:
         # Let's extract cost value from the one and only cost numpy matrix cell.
         return cost[0][0]
 
-    def hypothesis(self, data_set):
+    def predict(self, data):
+        """Predict the output for data_set input based on trained theta values
+
+        :param data: training set of features.
+        """
+
+        # Normalize features and add ones column.
+        data_normalized = LinearRegression.prepare_data(data)[0]
+
+        # Do predictions using model hypothesis.
+        predictions = LinearRegression.hypothesis(data_normalized, self.theta)
+
+        return predictions
+
+    @staticmethod
+    def hypothesis(data, theta):
         """Hypothesis function.
 
         It predicts the output values y based on the input values X and model parameters.
 
-        :param data_set: data set for what the predictions will be calculated.
+        :param data: data set for what the predictions will be calculated.
+        :param theta: model params.
         :return: predictions made by model based on provided theta.
         """
 
-        predictions = data_set @ self.theta
+        predictions = data @ theta
 
         return predictions
 
-    def predict(self, data_set):
-        """Predict the output for data_set input based on trained theta values"""
-
-        # Normalize features and add ones column.
-        (data_set_normalized, mean, deviation) = self.prepare_data_set(data_set)
-
-        # Do predictions using model hypothesis.
-        predictions = self.hypothesis(data_set_normalized)
-
-        return predictions
-
-    def prepare_data_set(self, data_set):
+    @staticmethod
+    def prepare_data(data):
         """Prepares data set for training on prediction"""
 
         # Calculate the number of examples.
-        num_examples = data_set.shape[0]
+        num_examples = data.shape[0]
 
         # Normalize data set.
         (
-            data_set_normalized,
+            data_normalized,
             features_mean,
             features_deviation
-        ) = LinearRegression.normalize_features(data_set)
+        ) = LinearRegression.normalize_features(data)
 
         # Add a column of ones to X.
-        data_set_normalized = np.hstack((np.ones((num_examples, 1)), data_set_normalized))
+        data_normalized = np.hstack((np.ones((num_examples, 1)), data_normalized))
 
-        return data_set_normalized, features_mean, features_deviation
+        return data_normalized, features_mean, features_deviation
 
     @staticmethod
-    def normalize_features(data_set):
+    def normalize_features(data):
         """Normalize input features.
 
         Normalizes the features in x. Returns a normalized version of x where the mean value of
-        each feature is 0 and the standard deviation is 1.
+        each feature is 0 and deviation is 1.
 
-        :param data_set: training set of features.
+        :param data: training set of features.
         :return: normalized set of features.
         """
 
         # Copy original array to prevent it from changes.
-        data_set_normalized = np.copy(data_set)
+        data_normalized = np.copy(data)
 
         # Get average values for each feature (column) in X.
-        features_mean = np.mean(data_set, 0)
+        features_mean = np.mean(data, 0)
 
         # Calculate the standard deviation for each feature.
-        features_deviation = np.std(data_set, 0)
+        features_deviation = np.std(data, 0)
 
         # Subtract mean values from each feature (column) of every example (row)
         # to make all features be spread around zero.
-        data_set_normalized -= features_mean
+        data_normalized -= features_mean
 
         # Normalize each feature values for each example so that all features
         # are close to [-1:1] boundaries.
-        data_set_normalized /= features_deviation
+        data_normalized /= features_deviation
 
-        return data_set_normalized, features_mean, features_deviation
+        return data_normalized, features_mean, features_deviation
