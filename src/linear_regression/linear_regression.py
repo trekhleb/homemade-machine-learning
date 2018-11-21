@@ -56,7 +56,7 @@ class LinearRegression:
         # Initialize J_history with zeros.
         cost_history = []
 
-        for iteration in range(num_iterations):
+        for _ in range(num_iterations):
             # Perform a single gradient step on the parameter vector theta.
             self.gradient_step(alpha, lambda_param)
 
