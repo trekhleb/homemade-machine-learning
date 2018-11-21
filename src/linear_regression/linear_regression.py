@@ -172,18 +172,21 @@ class LinearRegression:
         # Calculate the number of examples.
         num_examples = data.shape[0]
 
+        # Prevent original data from being modified.
+        data_processed = np.copy(data)
+
         # Add polynomial features to data set if needed.
-        data_polynomial = LinearRegression.add_polynomial_features(data, polynomial_degree)
+        data_processed = LinearRegression.add_polynomial_features(data_processed, polynomial_degree)
 
         # Normalize data set.
         (
-            data_normalized,
+            data_processed,
             features_mean,
             features_deviation
-        ) = LinearRegression.normalize_features(data_polynomial)
+        ) = LinearRegression.normalize_features(data_processed)
 
         # Add a column of ones to X.
-        data_processed = np.hstack((np.ones((num_examples, 1)), data_normalized))
+        data_processed = np.hstack((np.ones((num_examples, 1)), data_processed))
 
         return data_processed, features_mean, features_deviation
 
@@ -218,13 +221,18 @@ class LinearRegression:
         return data_normalized, features_mean, features_deviation
 
     @staticmethod
-    def add_polynomial_features(data, degree):
-        """Extends data set with polynomial features of certain degree"""
+    def add_polynomial_features(data, polynomial_degree):
+        """Extends data set with polynomial features of certain degree
 
-        polynomial_data = np.copy(data)
+        :param data: data set.
+        :param polynomial_degree: the max power of new features.
+        """
 
-        for current_degree in range(degree):
-            polynomial_feature = polynomial_data * polynomial_data
-            polynomial_data = np.hstack((polynomial_data, polynomial_feature))
+        poly_data = np.copy(data)
 
-        return polynomial_data
+        for degree in range(polynomial_degree):
+            for poly_index in range(degree):
+                polynomials = (poly_data ** (degree - poly_index)) * (poly_data ** poly_index)
+                poly_data = np.hstack((poly_data, polynomials))
+
+        return poly_data
