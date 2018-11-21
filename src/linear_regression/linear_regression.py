@@ -6,7 +6,7 @@ import numpy as np
 class LinearRegression:
     """Linear Regression Class"""
 
-    def __init__(self, data, labels):
+    def __init__(self, data, labels, polynomial_degree=0):
         """Linear regression constructor.
 
         :param data: training set.
@@ -18,12 +18,13 @@ class LinearRegression:
             data_processed,
             features_mean,
             features_deviation
-        ) = LinearRegression.prepare_data(data)
+        ) = LinearRegression.prepare_data(data, polynomial_degree)
 
         self.data = data_processed
         self.labels = labels
         self.features_mean = features_mean
         self.features_deviation = features_deviation
+        self.polynomial_degree = polynomial_degree
 
         # Initialize model parameters.
         num_features = self.data.shape[1]
@@ -104,7 +105,7 @@ class LinearRegression:
         :param lambda_param: regularization parameter
         """
 
-        data_processed = LinearRegression.prepare_data(data)[0]
+        data_processed = LinearRegression.prepare_data(data, self.polynomial_degree)[0]
 
         return self.cost_function(data_processed, labels, lambda_param)
 
@@ -142,7 +143,7 @@ class LinearRegression:
         """
 
         # Normalize features and add ones column.
-        data_processed = LinearRegression.prepare_data(data)[0]
+        data_processed = LinearRegression.prepare_data(data, self.polynomial_degree)[0]
 
         # Do predictions using model hypothesis.
         predictions = LinearRegression.hypothesis(data_processed, self.theta)
@@ -165,18 +166,21 @@ class LinearRegression:
         return predictions
 
     @staticmethod
-    def prepare_data(data):
+    def prepare_data(data, polynomial_degree=0):
         """Prepares data set for training on prediction"""
 
         # Calculate the number of examples.
         num_examples = data.shape[0]
+
+        # Add polynomial features to data set if needed.
+        data_polynomial = LinearRegression.add_polynomial_features(data, polynomial_degree)
 
         # Normalize data set.
         (
             data_normalized,
             features_mean,
             features_deviation
-        ) = LinearRegression.normalize_features(data)
+        ) = LinearRegression.normalize_features(data_polynomial)
 
         # Add a column of ones to X.
         data_processed = np.hstack((np.ones((num_examples, 1)), data_normalized))
@@ -212,3 +216,15 @@ class LinearRegression:
         data_normalized /= features_deviation
 
         return data_normalized, features_mean, features_deviation
+
+    @staticmethod
+    def add_polynomial_features(data, degree):
+        """Extends data set with polynomial features of certain degree"""
+
+        polynomial_data = np.copy(data)
+
+        for current_degree in range(degree):
+            polynomial_feature = polynomial_data * polynomial_data
+            polynomial_data = np.hstack((polynomial_data, polynomial_feature))
+
+        return polynomial_data
