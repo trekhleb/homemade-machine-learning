@@ -13,19 +13,12 @@ class LinearRegression:
         :param labels: training set outputs (correct values).
         """
 
-        # Calculate the number of training examples and features.
-        num_examples = training_set.shape[0]
-        num_features = training_set.shape[1]
-
-        # Normalize features.
+        # Normalize features and add ones column.
         (
             training_set_normalized,
             features_mean,
             features_deviation
-        ) = LinearRegression.normalize_features(training_set)
-
-        # Add a column of ones to X.
-        training_set_normalized = np.hstack((np.ones((num_examples, 1)), training_set_normalized))
+        ) = self.prepare_data_set(training_set)
 
         self.training_set = training_set_normalized
         self.labels = labels
@@ -33,6 +26,7 @@ class LinearRegression:
         self.features_deviation = features_deviation
 
         # Initialize model parameters.
+        num_features = training_set.shape[1]
         self.theta = np.zeros((num_features + 1, 1))
 
     def train(self, alpha, lambda_param, num_iterations):
@@ -143,18 +137,31 @@ class LinearRegression:
     def predict(self, data_set):
         """Predict the output for data_set input based on trained theta values"""
 
-        # Calculate the number of training examples and features.
+        # Normalize features and add ones column.
+        (data_set_normalized, mean, deviation) = self.prepare_data_set(data_set)
+
+        # Do predictions using model hypothesis.
+        predictions = self.hypothesis(data_set_normalized)
+
+        return predictions
+
+    def prepare_data_set(self, data_set):
+        """Prepares data set for training on prediction"""
+
+        # Calculate the number of examples.
         num_examples = data_set.shape[0]
 
-        # Normalize features.
-        (data_set_normalized, mean, deviation) = self.normalize_features(data_set)
+        # Normalize data set.
+        (
+            data_set_normalized,
+            features_mean,
+            features_deviation
+        ) = LinearRegression.normalize_features(data_set)
 
         # Add a column of ones to X.
         data_set_normalized = np.hstack((np.ones((num_examples, 1)), data_set_normalized))
 
-        predictions = self.hypothesis(data_set_normalized)
-
-        return predictions
+        return data_set_normalized, features_mean, features_deviation
 
     @staticmethod
     def normalize_features(data_set):
