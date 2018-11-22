@@ -191,31 +191,6 @@ Before starting forward propagation we need to initialize Theta parameters. We c
 
 ![theta-init](../../images/neural_network/theta-init.svg)
 
-## Files
-
-- [demo.m](./demo.m) - demo file that you should run to launch neural network training and to see how the network will recognize handwritten digits.
-- [neural_network_train.m](./neural_network_train.m) - function that initialize the neural network and starts its training.
-- [neural_network_predict.m](./neural_network_predict.m) - performs prediction of the input data using trained network parameters.
-- [debug_initialize_weights.m](./debug_initialize_weights.m) - function that initializes network thetas not randomly for debugging purposes.
-- [debug_nn_gradients.m](./debug_nn_gradients.m) - function that helps to debug backpropagation gradients by comparing them to numerically calculated gradients.
-- [debug_numerical_gradient.m](./debug_numerical_gradient.m) - calculate the gradient numerically (using small epsilon step at certain point).
-- [digits.mat](./digits.mat) - training set of labeled hand-written digits.
-- [display_data.m](./display_data.m) - helper function that renders randomly selected digits from training set.
-- [fmincg.m](./fmincg.m) - function that does gradient descent (alternative to `fminunc()`).
-- [nn_backpropagation.m](./nn_backpropagation.m) - function that performs backpropagation for neural network.
-- [nn_cost_function.m](./nn_cost_function.m) - function that calculates neural network cost for specific model parameters.
-- [nn_feedforward_propagation.m](./nn_feedforward_propagation.m) - function that performs feedforward propagation for neural network.
-- [nn_gradient_step.m](./nn_gradient_step.m) - function that performs one gradient step.
-- [nn_params_init.m](./nn_params_init.m) - randomly initializes neural network parameters to brake symmetry.
-- [nn_params_roll.m](./nn_params_roll.m) - function that transforms flat vector of thetas into matrices of thetas for each NN layer.
-- [sigmoid_gradient.m](./sigmoid_gradient.m) - calculates sigmoid function gradient.
-- [sigmoid.m](./sigmoid.m) - sigmoid function.
-- [unroll.m](./unroll.m) - transforms matrices of theta for each layer into one flat vector.
-
-### Demo visualizations
-
-![Demo visualization](../../images/neural_network/demo.png)
-
 ## References
 
 - [Machine Learning on Coursera](https://www.coursera.org/learn/machine-learning)

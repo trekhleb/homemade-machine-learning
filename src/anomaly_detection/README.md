@@ -97,19 +97,6 @@ _fp_ - number of false positives.
 
 _fn_ - number of false negatives.
 
-## Files
-
-- [demo.m](./demo.m) - main file that you should run from Octave console in order to see the demo.
-- [server_params.mat](./server_params.mat) - training data set.
-- [estimate_gaussian.m](./estimate_gaussian.m) - this function estimates the parameters of a Gaussian distribution using the data in X.
-- [multivariate_gaussian.m](./multivariate_gaussian.m) - function that computes the probability density function of the multivariate gaussian distribution.
-- [select_threshold.m](./select_threshold.m) - function that finds the best threshold (epsilon) to use for selecting outliers.
-- [visualize_fit.m](./visualize_fit.m) - Function that visualizes the data set and its estimated distribution.
-
-### Demo visualizations
-
-![Demo visualization](../../images/anomaly_detection/demo.png)
-
 ## References
 
 - [Machine Learning on Coursera](https://www.coursera.org/learn/machine-learning)
