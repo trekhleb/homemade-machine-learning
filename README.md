@@ -22,7 +22,7 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- [Linear Regression Mathematics](./src/linear_regression)
+- [Linear Regression Math](./src/linear_regression)
 - Jupyter Demos:
     - [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
     - Multivariate Linear Regression Demo - ⏳ in progress...
@@ -34,9 +34,11 @@ In classification problems we split input examples by certain characteristic.
 
 _Usage examples: spam-filters, language detection, finding similar documents, handwritten letters recognition, etc._
 
-#### 🤖 [Logistic Regression](./logistic-regression)
+#### 🤖 Logistic Regression
 
-- [Logistic Regression Mathematics](./logistic-regression) 
+- [Logistic Regression Math](./src/logistic_regression)
+- Jupyter Demos:
+    - ⏳ in progress...
 
 ## Unsupervised Learning
 
@@ -48,7 +50,11 @@ In clustering problems we split the training examples by unknown characteristics
 
 _Usage examples: market segmentation, social networks analysis, organize computing clusters, astronomical data analysis, image compression, etc._
 
-🤖 [K-means algorithm](./k-means) - example: split data into three clusters.
+#### 🤖 K-means Algorithm
+
+- [K-means Algorithm Math](./src/k_means)
+- Jupyter Demos:
+    - ⏳ in progress...
 
 ### Anomaly Detection
 
@@ -56,7 +62,11 @@ Anomaly detection (also outlier detection) is the identification of rare items, 
 
 _Usage examples: intrusion detection, fraud detection, system health monitoring, removing anomalous data from the dataset etc._
 
-🤖 [Anomaly Detection using Gaussian distribution](./anomaly-detection) - example: detect overloaded server.
+#### 🤖 Anomaly Detection using Gaussian Distribution
+
+- [Anomaly Detection using Gaussian Distribution Math](./src/anomaly_detection)
+- Jupyter Demos:
+    - ⏳ in progress...
 
 ## Neural Network (NN)
 
@@ -64,7 +74,11 @@ The neural network itself isn't an algorithm, but rather a framework for many di
 
 _Usage examples: as a substitute of all other algorithms in general, image recognition, voice recognition, image processing (applying specific style), language translation, etc._
 
-🤖 [Neural Network: Multilayer Perceptron (MLP)](./neural-network) - example: handwritten digits recognition.
+#### Multilayer Perceptron (MLP)
+
+- [Multilayer Perceptron (MLP) Math](./src/neural_network)
+- Jupyter Demos:
+    - ⏳ in progress...
 
 ## Machine Learning Map
 
