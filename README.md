@@ -74,7 +74,7 @@ The neural network itself isn't an algorithm, but rather a framework for many di
 
 _Usage examples: as a substitute of all other algorithms in general, image recognition, voice recognition, image processing (applying specific style), language translation, etc._
 
-#### Multilayer Perceptron (MLP)
+#### 🤖 Multilayer Perceptron (MLP)
 
 - [Multilayer Perceptron (MLP) Math](./src/neural_network)
 - Jupyter Demos:
