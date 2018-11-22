@@ -10,7 +10,7 @@ On the image above there is an example of dependency between input variable _x_ 
 
 Each training example consists of features (variables) that describe this example (i.e. number of rooms, the square of the apartment etc.)
 
-![Features](/images/linear_regression/features.svg)
+![Features](../../images/linear_regression/features.svg)
 
 _n_ - number of features
 
