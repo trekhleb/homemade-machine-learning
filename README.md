@@ -22,9 +22,11 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- [Linear Regression Math](./src/linear_regression)
+- [Linear Regression Theory](./src/linear_regression)
 - Jupyter Demos:
-    - [Univariate Linear Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb)  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/trekhleb/homemade-machine-learning/master?filepath=%2Fsrc%2Flinear_regression%2Funivariate_linear_regression_demo.ipynb)
+    - [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
+    - Multivariate Linear Regression Demo - ⏳ in progress...
+    - Polynomial Regression Demo - ⏳ in progress...
 
 ### Classification
 
