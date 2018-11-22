@@ -10,7 +10,7 @@ In most cases the explanations are based on [this great](https://www.coursera.or
 
 ## How to Use This Repository
 
-Depending on how deep you want to dive in there are three possible depths:
+Depending on how deep you want to dive there are three possible depths:
 
 1. *39 ft:* Browse READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
 2. *59 ft:* Browse online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
