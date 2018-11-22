@@ -6,74 +6,74 @@ The **normal** (or **Gaussian**) **distribution** is a very common continuous pr
 
 Let's say:
 
-![x-in-R](./formulas/x-in-R.svg)
+![x-in-R](../../images/anomaly_detection/x-in-R.svg)
 
 If _x_ is normally distributed then it may be displayed as follows.
 
 ![Gaussian Distribution](https://upload.wikimedia.org/wikipedia/commons/7/74/Normal_Distribution_PDF.svg)
 
-![mu](./formulas/mu.svg) - mean value,
+![mu](../../images/anomaly_detection/mu.svg) - mean value,
 
-![sigma-2](./formulas/sigma-2.svg) - variance.
+![sigma-2](../../images/anomaly_detection/sigma-2.svg) - variance.
 
-![x-normal](./formulas/x-normal.svg) - "~" means that _"x is distibuted as ..."_
+![x-normal](../../images/anomaly_detection/x-normal.svg) - "~" means that _"x is distributed as ..."_
 
 Then Gaussian distribution (probability that some _x_ may be a part of distribution with certain mean and variance) is given by:
 
-![Gaussian Distribution](./formulas/p.svg)
+![Gaussian Distribution](../../images/anomaly_detection/p.svg)
 
 ## Estimating Parameters for a Gaussian
 
 We may use the following formulas to estimate Gaussian parameters (mean and variation) for _i<sup>th</sup>_ feature:
 
-![mu-i](./formulas/mu-i.svg)
+![mu-i](../../images/anomaly_detection/mu-i.svg)
 
-![sigma-i](./formulas/sigma-i.svg)
+![sigma-i](../../images/anomaly_detection/sigma-i.svg)
 
-![i](./formulas/i.svg)
+![i](../../images/anomaly_detection/i.svg)
 
-![m](./formulas/m.svg) - number of training examples.
+![m](../../images/anomaly_detection/m.svg) - number of training examples.
 
-![n](./formulas/n.svg) - number of features.
+![n](../../images/anomaly_detection/n.svg) - number of features.
 
 ## Density Estimation
 
 So we have a training set:
 
-![Training Set](./formulas/training-set.svg)
+![Training Set](../../images/anomaly_detection/training-set.svg)
 
-![x-in-R](./formulas/x-in-R.svg)
+![x-in-R](../../images/anomaly_detection/x-in-R.svg)
 
 We assume that each feature of the training set is normally distributed:
 
-![x-1](./formulas/x-1.svg)
+![x-1](../../images/anomaly_detection/x-1.svg)
 
-![x-2](./formulas/x-2.svg)
+![x-2](../../images/anomaly_detection/x-2.svg)
 
-![x-n](./formulas/x-n.svg)
+![x-n](../../images/anomaly_detection/x-n.svg)
 
 Then:
 
-![p-x](./formulas/p-x.svg)
+![p-x](../../images/anomaly_detection/p-x.svg)
 
-![p-x-2](./formulas/p-x-2.svg)
+![p-x-2](../../images/anomaly_detection/p-x-2.svg)
 
 ## Anomaly Detection Algorithm
 
-1. Choose features ![x-i](./formulas/x-i.svg) that might be indicative of anomalous examples (![Training Set](./formulas/training-set.svg)).
-2. Fit parameters ![params](./formulas/params.svg) using formulas:
+1. Choose features ![x-i](../../images/anomaly_detection/x-i.svg) that might be indicative of anomalous examples (![Training Set](../../images/anomaly_detection/training-set.svg)).
+2. Fit parameters ![params](../../images/anomaly_detection/params.svg) using formulas:
 
-![mu-i](./formulas/mu-i.svg)
+![mu-i](../../images/anomaly_detection/mu-i.svg)
 
-![sigma-i](./formulas/sigma-i.svg)
+![sigma-i](../../images/anomaly_detection/sigma-i.svg)
 
 3. Given new example _x_, compute _p(x)_:
 
-![p-x-2](./formulas/p-x-2.svg)
+![p-x-2](../../images/anomaly_detection/p-x-2.svg)
 
-Anomaly if ![anomaly](./formulas/anomaly.svg)
+Anomaly if ![anomaly](../../images/anomaly_detection/anomaly.svg)
 
-![epsilon](./formulas/epsilon.svg) - probability threshold.
+![epsilon](../../images/anomaly_detection/epsilon.svg) - probability threshold.
 
 ## Algorithm Evaluation
 
@@ -83,13 +83,13 @@ The F1 score is the harmonic average of the precision and recall, where an F1 sc
 
 ![F1 Score](https://upload.wikimedia.org/wikipedia/commons/2/26/Precisionrecall.svg)
 
-![f1](./formulas/f1.svg)
+![f1](../../images/anomaly_detection/f1.svg)
 
 Where:
 
-![precision](./formulas/precision.svg)
+![precision](../../images/anomaly_detection/precision.svg)
 
-![recall](./formulas/recall.svg)
+![recall](../../images/anomaly_detection/recall.svg)
 
 _tp_ - number of true positives.
 
@@ -108,7 +108,7 @@ _fn_ - number of false negatives.
 
 ### Demo visualizations
 
-![Demo visualization](./formulas/demo.png)
+![Demo visualization](../../images/anomaly_detection/demo.png)
 
 ## References
 

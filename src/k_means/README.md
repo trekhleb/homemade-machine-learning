@@ -10,13 +10,13 @@ The result of a cluster analysis shown below as the coloring of the squares into
 
 Given a training set of observations:
 
-![Training set](./formulas/training-set.svg)
+![Training set](../../images/k_means/training-set.svg)
 
-![x-i](./formulas/x-i.svg)
+![x-i](../../images/k_means/x-i.svg)
 
 Where each observation is a _d_-dimensional real vector, k-means clustering aims to partition the _m_ observations into _K_ (_≤ m_) clusters:
 
-![Clusters](./formulas/clasters.svg)
+![Clusters](../../images/k_means/clasters.svg)
 
 ... so as to minimize the within-cluster sum of squares (i.e. variance).
 
@@ -32,19 +32,19 @@ Another illustration of k-means convergence:
 
 ## Cost Function (Distortion)
 
-![c-i](./formulas/c-i.svg) - index of cluster _(1, 2, ..., K)_ to which example _x<sup>(i)</sup>_ is currently assigned.
+![c-i](../../images/k_means/c-i.svg) - index of cluster _(1, 2, ..., K)_ to which example _x<sup>(i)</sup>_ is currently assigned.
 
-![mu-k](./formulas/mu-k.svg) - cluster centroid _k_ (![mu-k-2](./formulas/mu-k-2.svg)) and ![k](./formulas/k.svg).
+![mu-k](../../images/k_means/mu-k.svg) - cluster centroid _k_ (![mu-k-2](../../images/k_means/mu-k-2.svg)) and ![k](../../images/k_means/k.svg).
 
-![mu-c-i](./formulas/mu-c-i.svg) - cluster centroid of a cluster to which the example _x<sup>(i)</sup>_ has been assigned.
+![mu-c-i](../../images/k_means/mu-c-i.svg) - cluster centroid of a cluster to which the example _x<sup>(i)</sup>_ has been assigned.
 
 For example:
 
-![Cluster example](./formulas/cluster-example.svg)
+![Cluster example](../../images/k_means/cluster-example.svg)
 
 In this case optimization objective will look like the following:
 
-![Cost Function](./formulas/cost-function.svg)
+![Cost Function](../../images/k_means/cost-function.svg)
 
 ![Clustering](https://upload.wikimedia.org/wikipedia/commons/d/d1/KMeans-density-data.svg)
 
@@ -52,9 +52,9 @@ In this case optimization objective will look like the following:
 
 Randomly initialize _K_ cluster centroids (randomly pick _K_ training examples and set _K_ cluster centroids to that examples).
 
-![Centroids](./formulas/centroids.svg)
+![Centroids](../../images/k_means/centroids.svg)
 
-![k-means-algorithm](./formulas/k-means-algorithm.svg)
+![k-means-algorithm](../../images/k_means/k-means-algorithm.svg)
 
 ## Files
 
@@ -68,7 +68,7 @@ Randomly initialize _K_ cluster centroids (randomly pick _K_ training examples a
 
 ### Demo visualizations
 
-![Demo visualization](./formulas/demo.png)
+![Demo visualization](../../images/k_means/demo.png)
 
 ## References
 

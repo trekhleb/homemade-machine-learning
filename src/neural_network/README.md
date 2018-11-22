@@ -18,15 +18,15 @@ In common ANN implementations, the signal at a connection between artificial neu
 
 Here is a model of one neuron unit.
 
-![neuron](./formulas/neuron.drawio.svg)
+![neuron](../../images/neural_network/neuron.drawio.svg)
 
-![x-0](./formulas/x-0.svg)
+![x-0](../../images/neural_network/x-0.svg)
 
-![neuron x](./formulas/neuron-x.svg)
+![neuron x](../../images/neural_network/neuron-x.svg)
 
 Weights:
 
-![neuron weights](./formulas/neuron-weights.svg)
+![neuron weights](../../images/neural_network/neuron-weights.svg)
 
 ## Network Model (Set of Neurons)
 
@@ -34,17 +34,17 @@ Neural network consists of the neuron units described in the section above.
 
 Let's take a look at simple example model with one hidden layer.
 
-![network model](./formulas/neuron-network.drawio.svg)
+![network model](../../images/neural_network/neuron-network.drawio.svg)
 
-![a-i-j](./formulas/a-i-j.svg) - "activation" of unit _i_ in layer _j_.
+![a-i-j](../../images/neural_network/a-i-j.svg) - "activation" of unit _i_ in layer _j_.
 
-![Theta-j](./formulas/big-theta-j.svg) - matrix of weights controlling function mapping from layer _j_ to layer _j + 1_. For example for the first layer: ![Theta-1](./formulas/big-theta-1.svg).
+![Theta-j](../../images/neural_network/big-theta-j.svg) - matrix of weights controlling function mapping from layer _j_ to layer _j + 1_. For example for the first layer: ![Theta-1](../../images/neural_network/big-theta-1.svg).
 
-![Theta-j](./formulas/L.svg) - total number of layers in network (3 in our example).
+![Theta-j](../../images/neural_network/L.svg) - total number of layers in network (3 in our example).
 
-![s-l](./formulas/s-l.svg) - number of units (not counting bias unit) in layer _l_.
+![s-l](../../images/neural_network/s-l.svg) - number of units (not counting bias unit) in layer _l_.
 
-![K](./formulas/K.svg) - number of output units (1 in our example but could be any real number for multi-class classification).
+![K](../../images/neural_network/K.svg) - number of output units (1 in our example but could be any real number for multi-class classification).
 
 ## Multi-class Classification
 
@@ -54,25 +54,25 @@ Let's say we want our network to distinguish if there is a _pedestrian_ or _car_
 
 In this case the output layer of our network will have 4 units (input layer will be much bigger and it will have all the pixel from the image. Let's say if all our images will be 20x20 pixels then the input layer will have 400 units each of which will contain the black-white color of the corresponding picture).
 
-![multi-class-network](./formulas/multi-class-network.drawio.svg)
+![multi-class-network](../../images/neural_network/multi-class-network.drawio.svg)
 
-![h-Theta-multi-class](./formulas/multi-class-h.svg)
+![h-Theta-multi-class](../../images/neural_network/multi-class-h.svg)
 
 In this case we would expect our final hypothesis to have following values:
 
-![h-pedestrian](./formulas/h-pedestrian.svg)
+![h-pedestrian](../../images/neural_network/h-pedestrian.svg)
 
-![h-car](./formulas/h-car.svg)
+![h-car](../../images/neural_network/h-car.svg)
 
-![h-motorcycle](./formulas/h-motorcycle.svg)
+![h-motorcycle](../../images/neural_network/h-motorcycle.svg)
 
 In this case for the training set:
 
-![training-set](./formulas/training-set.svg)
+![training-set](../../images/neural_network/training-set.svg)
 
 We would have:
 
-![y-i-multi](./formulas/y-i-multi.svg)
+![y-i-multi](../../images/neural_network/y-i-multi.svg)
 
 ## Forward (or Feedforward) Propagation
 
@@ -80,19 +80,19 @@ Forward propagation is an interactive process of calculating activations for eac
 
 For the simple network mentioned in a previous section above we're able to calculate activations for second layer based on the input layer and our network parameters:
 
-![a-1-2](./formulas/a-1-2.svg)
+![a-1-2](../../images/neural_network/a-1-2.svg)
 
-![a-2-2](./formulas/a-2-2.svg)
+![a-2-2](../../images/neural_network/a-2-2.svg)
 
-![a-3-2](./formulas/a-3-2.svg)
+![a-3-2](../../images/neural_network/a-3-2.svg)
 
 The output layer activation will be calculated based on the hidden layer activations:
 
-![h-Theta-example](./formulas/h-Theta-example.svg)
+![h-Theta-example](../../images/neural_network/h-Theta-example.svg)
 
 Where _g()_ function may be a sigmoid:
 
-![sigmoid](./formulas/sigmoid.svg)
+![sigmoid](../../images/neural_network/sigmoid.svg)
 
 ![Sigmoid](https://upload.wikimedia.org/wikipedia/commons/8/88/Logistic-curve.svg)
 
@@ -100,44 +100,44 @@ Where _g()_ function may be a sigmoid:
 
 Now let's convert previous calculations into more concise vectorized form.
 
-![neuron x](./formulas/neuron-x.svg)
+![neuron x](../../images/neural_network/neuron-x.svg)
 
 To simplify previous activation equations let's introduce a _z_ variable:
 
-![z-1](./formulas/z-1.svg)
+![z-1](../../images/neural_network/z-1.svg)
 
-![z-2](./formulas/z-2.svg)
+![z-2](../../images/neural_network/z-2.svg)
 
-![z-3](./formulas/z-3.svg)
+![z-3](../../images/neural_network/z-3.svg)
 
-![z-matrix](./formulas/z-matrix.svg)
+![z-matrix](../../images/neural_network/z-matrix.svg)
 
 > Don't forget to add bias units (activations) before propagating to the next layer.
-> ![a-bias](./formulas/a-bias.svg)
+> ![a-bias](../../images/neural_network/a-bias.svg)
 
-![z-3-vectorize](./formulas/z-3-vectorized.svg)
+![z-3-vectorize](../../images/neural_network/z-3-vectorized.svg)
 
-![h-Theta-vectorized](./formulas/h-Theta-vectorized.svg)
+![h-Theta-vectorized](../../images/neural_network/h-Theta-vectorized.svg)
 
 ### Forward Propagation Example
 
 Let's take the following network architecture with 4 layers (input layer, 2 hidden layers and output layer) as an example:
 
-![multi-class-network](./formulas/multi-class-network.drawio.svg)
+![multi-class-network](../../images/neural_network/multi-class-network.drawio.svg)
 
 In this case the forward propagation steps would look like the following:
 
-![forward-propagation-example](./formulas/forward-propagation-example.svg)
+![forward-propagation-example](../../images/neural_network/forward-propagation-example.svg)
 
 ## Cost Function
 
 The cost function for the neuron network is quite similar to the logistic regression cost function.
 
-![cost-function](./formulas/cost-function.svg)
+![cost-function](../../images/neural_network/cost-function.svg)
 
-![h-Theta](./formulas/h-Theta.svg)
+![h-Theta](../../images/neural_network/h-Theta.svg)
 
-![h-Theta-i](./formulas/h-Theta-i.svg)
+![h-Theta-i](../../images/neural_network/h-Theta-i.svg)
 
 ## Backpropagation
 
@@ -147,49 +147,49 @@ Backpropagation algorithm has the same purpose as gradient descent for linear or
 
 In other words we need to be able to calculate partial derivative of cost function for each theta.
 
-![J-partial](./formulas/J-partial.svg)
+![J-partial](../../images/neural_network/J-partial.svg)
 
-![multi-class-network](./formulas/multi-class-network.drawio.svg)
+![multi-class-network](../../images/neural_network/multi-class-network.drawio.svg)
 
 Let's assume that:
 
-![delta-j-l](./formulas/delta-j-l.svg) - "error" of node _j_ in layer _l_.
+![delta-j-l](../../images/neural_network/delta-j-l.svg) - "error" of node _j_ in layer _l_.
 
 For each output unit (layer _L = 4_):
 
-![delta-4](./formulas/delta-4.svg)
+![delta-4](../../images/neural_network/delta-4.svg)
 
 Or in vectorized form:
 
-![delta-4-vectorized](./formulas/delta-4-vectorized.svg)
+![delta-4-vectorized](../../images/neural_network/delta-4-vectorized.svg)
 
-![delta-3-2](./formulas/delta-3-2.svg)
+![delta-3-2](../../images/neural_network/delta-3-2.svg)
 
-![sigmoid-gradient](./formulas/sigmoid-gradient.svg) - sigmoid gradient.
+![sigmoid-gradient](../../images/neural_network/sigmoid-gradient.svg) - sigmoid gradient.
 
-![sigmoid-gradient-2](./formulas/sigmoid-gradient-2.svg)
+![sigmoid-gradient-2](../../images/neural_network/sigmoid-gradient-2.svg)
 
 Now we may calculate the gradient step:
 
-![J-partial-detailed](./formulas/J-partial-detailed.svg)
+![J-partial-detailed](../../images/neural_network/J-partial-detailed.svg)
 
 ### Backpropagation Algorithm
 
 For training set
 
-![training-set](./formulas/training-set.svg)
+![training-set](../../images/neural_network/training-set.svg)
 
 We need to set:
 
-![Delta](./formulas/Delta.svg)
+![Delta](../../images/neural_network/Delta.svg)
 
-![backpropagation](./formulas/backpropagation.svg)
+![backpropagation](../../images/neural_network/backpropagation.svg)
 
 ## Random Initialization
 
 Before starting forward propagation we need to initialize Theta parameters. We can not assign zero to all thetas since this would make our network useless because every neuron of the layer will learn the same as its siblings. In other word we need to **break the symmetry**. In order to do so we need to initialize thetas to some small random initial values:
 
-![theta-init](./formulas/theta-init.svg)
+![theta-init](../../images/neural_network/theta-init.svg)
 
 ## Files
 
@@ -214,7 +214,7 @@ Before starting forward propagation we need to initialize Theta parameters. We c
 
 ### Demo visualizations
 
-![Demo visualization](./formulas/demo.png)
+![Demo visualization](../../images/neural_network/demo.png)
 
 ## References
 
