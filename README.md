@@ -25,8 +25,8 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 - [Linear Regression (Math)](./src/linear_regression)
 - Jupyter Demos:
     - [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
-    - Multivariate Linear Regression Demo - ⏳ in progress...
-    - Polynomial Regression Demo - ⏳ in progress...
+    - ⏳ Multivariate Linear Regression Demo
+    - ⏳ Polynomial Regression Demo
 
 ### Classification
 
@@ -38,7 +38,7 @@ _Usage examples: spam-filters, language detection, finding similar documents, ha
 
 - [Logistic Regression (Math)](./src/logistic_regression)
 - Jupyter Demos:
-    - ⏳ in progress...
+    - ⏳
 
 ## Unsupervised Learning
 
@@ -54,7 +54,7 @@ _Usage examples: market segmentation, social networks analysis, organize computi
 
 - [K-means Algorithm (Math)](./src/k_means)
 - Jupyter Demos:
-    - ⏳ in progress...
+    - ⏳
 
 ### Anomaly Detection
 
@@ -66,7 +66,7 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 
 - [Anomaly Detection using Gaussian Distribution (Math)](./src/anomaly_detection)
 - Jupyter Demos:
-    - ⏳ in progress...
+    - ⏳
 
 ## Neural Network (NN)
 
@@ -78,7 +78,7 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 
 - [Multilayer Perceptron (Math)](./src/neural_network)
 - Jupyter Demos:
-    - ⏳ in progress...
+    - ⏳
 
 ## Machine Learning Map
 
