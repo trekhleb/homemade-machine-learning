@@ -4,7 +4,17 @@
 
 This repository contains examples of popular machine learning algorithms implemented in Python with code examples and mathematics behind them being explained. Each algorithm has Jupyter demo to make the learning process more interactive and to give you a possibility to play with training data, algorithms configurations and to immediately see the results, charts and predictions in your browser. 
 
-The purpose of this repository is _not_ to implement machine learning algorithms using 3<sup>rd</sup> party libraries "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm.  In most cases the explanations are based on [this great](https://www.coursera.org/learn/machine-learning) machine learning course.
+The purpose of this repository is _not_ to implement machine learning algorithms using 3<sup>rd</sup> party library "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are "homemade" and not intended to be used for production.   
+
+In most cases the explanations are based on [this great](https://www.coursera.org/learn/machine-learning) machine learning course.
+
+## How to Use This Repository
+
+You may dive into the following depths:
+
+1. *39 ft:* browse READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
+2. *59 ft:* browse online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
+3. *66 ft:* fork/clone this repo, install all dependencies, launch Jupyter locally and play not only with machine learning algorithms demos but also with theirs Python implementations.
 
 ## Supervised Learning
 
@@ -60,8 +70,33 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 
 The source of the following machine learning topics map is [this wonderful blog post](https://vas3k.ru/blog/machine_learning/)
 
-## How to Use This Repository
+## Prerequisites
 
-### Install Octave or MatLab
+**Installing Python**
 
-This repository contains `*.m` scripts that are intended to be run in [Octave](https://www.gnu.org/software/octave/) or [MatLab](https://www.mathworks.com/products/matlab.html). Thus in order to launch demos you need either Octave or MatLab to be installed on you local machine. In case of MatLab you may also use its [web-version](https://matlab.mathworks.com/).
+Make sure that you have [Python3 installed](https://realpython.com/installing-python/) on your machine.
+
+You might want to use [venv](https://docs.python.org/3/library/venv.html) standard Python library
+to create virtual environments and have Python, pip and all dependent packages to be installed and 
+served from the local project directory to avoid messing with system wide packages and their 
+versions.
+
+Depending on your installation you might have access to Python3 interpreter either by
+running `python` or `python3`. The same goes for pip package manager - it may be accessible either
+by running `pip` or `pip3`.
+
+You may check your Python version by running:
+
+```bash
+python --version
+```
+
+Note that in this repository whenever you see `python` it will be assumed that it is Python **3**.
+
+**Installing dependencies**
+
+Install all dependencies that are required for the project by running:
+
+```bash
+pip install -r requirements.txt
+```
