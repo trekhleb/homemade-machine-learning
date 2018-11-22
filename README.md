@@ -6,7 +6,7 @@ _For Octave/MatLab version of this repository please check [machine-learning-oct
 
 The purpose of this repository is _not_ to implement machine learning algorithms using 3<sup>rd</sup> party library "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are "homemade" and not intended to be used for production.
 
-### How to Use This Repository
+#### How to Use This Repository
 
 1. **Observe** READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
 2. **Interact** with online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
