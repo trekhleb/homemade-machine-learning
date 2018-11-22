@@ -4,13 +4,7 @@ _For Octave/MatLab version of this repository please check [machine-learning-oct
 
 > This repository contains examples of popular machine learning algorithms implemented in **Python** with mathematics behind them being explained. Each algorithm has interactive **Jupyter Notebook** demo that allows you to play with training data, algorithms configurations and to immediately see the results, charts and predictions in your browser. In most cases the explanations are based on great [machine learning course](https://www.coursera.org/learn/machine-learning) by Andrew Ng.
 
-The purpose of this repository is _not_ to implement machine learning algorithms using 3<sup>rd</sup> party library "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are called "homemade" and not intended to be used for production.
-
-#### How to Use This Repository
-
-1. **Observe** READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
-2. **Interact** with online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
-3. **Change** the way the algorithms are implemented by forking/cloning this repo, installing all dependencies, launching Jupyter locally and playing with Python implementations.
+The purpose of this repository is _not_ to implement machine learning algorithms by using 3<sup>rd</sup> party library "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are called "homemade" and not intended to be used for production.
 
 ## Supervised Learning
 
