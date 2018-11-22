@@ -2,7 +2,9 @@
 
 This repository contains examples of popular machine learning algorithms implemented in Python with code examples and mathematics behind them being explained. Each algorithm has Jupyter demo to make the learning process more interactive and to give you a possibility to play with training data, algorithms configurations and to immediately see the results, charts and predictions in your browser. 
 
-The purpose of this repository is _not_ to implement machine learning algorithms using 3<sup>rd</sup> party library "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are "homemade" and not intended to be used for production. In most cases the explanations are based on [this great](https://www.coursera.org/learn/machine-learning) machine learning course.
+The purpose of this repository is _not_ to implement machine learning algorithms using 3<sup>rd</sup> party library "one-liners" _but_ rather to practice and to get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are "homemade" and not intended to be used for production.
+
+In most cases the explanations are based on [this great](https://www.coursera.org/learn/machine-learning) machine learning course.
 
 #### How to Use This Repository
 
