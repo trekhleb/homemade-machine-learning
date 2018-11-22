@@ -22,9 +22,9 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- [Linear Regression (Math)](./src/linear_regression)
+- ∑ [Linear Regression (Math)](./src/linear_regression)
 - Jupyter Demos:
-    - [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
+    - ∑ [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
     - ⏳ Multivariate Linear Regression Demo
     - ⏳ Polynomial Regression Demo
 
@@ -36,7 +36,7 @@ _Usage examples: spam-filters, language detection, finding similar documents, ha
 
 #### 🤖 Logistic Regression
 
-- [Logistic Regression (Math)](./src/logistic_regression)
+- ∑ [Logistic Regression (Math)](./src/logistic_regression)
 - Jupyter Demos:
     - ⏳
 
@@ -52,7 +52,7 @@ _Usage examples: market segmentation, social networks analysis, organize computi
 
 #### 🤖 K-means Algorithm
 
-- [K-means Algorithm (Math)](./src/k_means)
+- ∑ [K-means Algorithm (Math)](./src/k_means)
 - Jupyter Demos:
     - ⏳
 
@@ -64,7 +64,7 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 
 #### 🤖 Anomaly Detection using Gaussian Distribution
 
-- [Anomaly Detection using Gaussian Distribution (Math)](./src/anomaly_detection)
+- ∑ [Anomaly Detection using Gaussian Distribution (Math)](./src/anomaly_detection)
 - Jupyter Demos:
     - ⏳
 
@@ -76,7 +76,7 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 
 #### 🤖 Multilayer Perceptron (MLP)
 
-- [Multilayer Perceptron (Math)](./src/neural_network)
+- ∑ [Multilayer Perceptron (Math)](./src/neural_network)
 - Jupyter Demos:
     - ⏳
 
