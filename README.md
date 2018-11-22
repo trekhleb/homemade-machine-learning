@@ -88,7 +88,7 @@ The source of the following machine learning topics map is [this wonderful blog 
 
 ## Prerequisites
 
-**Installing Python**
+#### Installing Python
 
 Make sure that you have [Python installed](https://realpython.com/installing-python/) on your machine.
 
@@ -97,10 +97,19 @@ to create virtual environments and have Python, `pip` and all dependent packages
 served from the local project directory to avoid messing with system wide packages and their 
 versions.
 
-**Installing dependencies**
+#### Installing Dependencies
 
 Install all dependencies that are required for the project by running:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+#### Launching Jupyter Locally
+
+All demos in the project may be run directly in your browser without installing Jupyter locally. But if you want to launch [Jupyter Notebook](http://jupyter.org/) locally you may do it be running the following command from the root folder of the project:
+
+```bash
+jupyter notebook
+```
+After this Jupyter Notebook will be accessible by `http://localhost:8888`.
