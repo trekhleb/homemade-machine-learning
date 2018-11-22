@@ -10,11 +10,11 @@ In most cases the explanations are based on [this great](https://www.coursera.or
 
 ## How to Use This Repository
 
-You may dive into the following depths:
+Depending on how deep you want to dive in there are three possible depths:
 
-1. *39 ft:* browse READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
-2. *59 ft:* browse online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
-3. *66 ft:* fork/clone this repo, install all dependencies, launch Jupyter locally and play not only with machine learning algorithms demos but also with theirs Python implementations.
+1. *39 ft:* Browse READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
+2. *59 ft:* Browse online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
+3. *66 ft:* Fork/clone this repo, install all dependencies, launch Jupyter locally and play not only with machine learning algorithms demos but also with theirs Python implementations.
 
 ## Supervised Learning
 
