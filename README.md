@@ -6,9 +6,9 @@ The purpose of this repository is _not_ to implement machine learning algorithms
 
 ## How to Use This Repository
 
-1. **Observe:** browse READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
-2. **Interact:** browse online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
-3. **Change:** fork/clone this repo, install all dependencies, launch Jupyter locally and play not only with machine learning algorithms demos but also with theirs Python implementations.
+1. **Observe:** READMEs and Python files to read about mathematics behind each algorithm and to see examples of how each algorithm may be implemented.
+2. **Interact:** with online Jupyter demos and play with each algorithm in your browser by trying to adjust algorithms settings, data sets configuration and to see how the output and predictions vary.
+3. **Change:** the way the algorithms are implemented by forking/cloning this repo, installing all dependencies, launching Jupyter locally and playing with Python implementations.
 
 ## Supervised Learning
 
