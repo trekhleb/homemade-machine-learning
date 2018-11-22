@@ -20,7 +20,11 @@ In regression problems we do real value predictions. Basically we try to draw a 
 
 _Usage examples: stock price forecast, sales analysis, dependency of any number, etc._
 
-🤖 [Linear Regression](./linear-regression) - example: house prices prediction.
+#### 🤖 Linear Regression
+
+- [Linear Regression Math](./src/linear_regression)
+- Jupyter Demos:
+    - [Univariate Linear Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb)  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/trekhleb/homemade-machine-learning/master?filepath=%2Fsrc%2Flinear_regression%2Funivariate_linear_regression_demo.ipynb)
 
 ### Classification
 
