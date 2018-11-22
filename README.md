@@ -22,7 +22,7 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- [Linear Regression Theory](./src/linear_regression)
+- [Linear Regression Mathematics](./src/linear_regression)
 - Jupyter Demos:
     - [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
     - Multivariate Linear Regression Demo - ⏳ in progress...
@@ -34,7 +34,9 @@ In classification problems we split input examples by certain characteristic.
 
 _Usage examples: spam-filters, language detection, finding similar documents, handwritten letters recognition, etc._
 
-🤖 [Logistic Regression](./logistic-regression) - examples: microchip fitness detection, handwritten digits recognitions using one-vs-all approach.
+#### 🤖 [Logistic Regression](./logistic-regression)
+
+- [Logistic Regression Mathematics](./logistic-regression) 
 
 ## Unsupervised Learning
 
