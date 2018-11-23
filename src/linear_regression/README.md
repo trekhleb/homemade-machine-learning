@@ -1,9 +1,12 @@
 # Linear Regression
 
 > **Jupyter Demos**
-> - ▶︎ [Univariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
-> - ▶︎ Multivariate Linear Regression (Demo)
-> - ▶︎ Polynomial Regression (Demo)
+>
+> ▶︎ [Univariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita. 
+>
+> ▶︎ Multivariate Linear Regression (Demo)
+>
+> ▶︎ Polynomial Regression (Demo)
 
 **Linear regression** is a linear model, e.g. a model that assumes a linear relationship between the input variables (_x_) and the single output variable (_y_). More specifically, that output variable (_y_) can be calculated from a linear combination of the input variables (_x_).
 
