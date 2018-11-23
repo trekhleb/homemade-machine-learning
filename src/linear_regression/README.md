@@ -4,7 +4,7 @@
 >
 > ▶︎ [Univariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita. 
 >
-> ▶︎ - ▶︎ [Multivariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita and freedom index.
+> ▶︎ - ▶︎ [Multivariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/src/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP and freedom index.
 >
 > ▶︎ Polynomial Regression (Demo)
 
