@@ -2,5 +2,6 @@ jupyter==1.0.0
 matplotlib==3.0.1
 numpy==1.15.3
 pandas==0.23.4
+plotly==3.4.1
 pylint==2.1.1
 scipy==1.1.0
