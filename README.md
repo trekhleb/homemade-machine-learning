@@ -18,10 +18,10 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- 📒📗📖 [Linear Regression (Math)](homemade/linear_regression)
-- ▶︎ [Univariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
-- ▶︎ [Multivariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP and freedom index.
-- ▶︎ [Non-linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/non_linear_regression_demo.ipynb)
+- 📗 [Linear Regression (Math)](homemade/linear_regression)
+- ⚙️ [Univariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
+- ⚙️ [Multivariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP and freedom index.
+- ⚙️ [Non-linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/non_linear_regression_demo.ipynb)
 
 ### Classification
 
@@ -31,7 +31,7 @@ _Usage examples: spam-filters, language detection, finding similar documents, ha
 
 #### 🤖 Logistic Regression
 
-- ∑ [Logistic Regression (Math)](homemade/logistic_regression)
+- 📗 [Logistic Regression (Math)](homemade/logistic_regression)
 - ▶︎ Logistic Regression (Demo)
 
 ## Unsupervised Learning
@@ -46,7 +46,7 @@ _Usage examples: market segmentation, social networks analysis, organize computi
 
 #### 🤖 K-means Algorithm
 
-- ∑ [K-means Algorithm (Math)](homemade/k_means)
+- 📗 [K-means Algorithm (Math)](homemade/k_means)
 - ▶︎ K-means Algorithm (Demo)
 
 ### Anomaly Detection
@@ -57,7 +57,7 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 
 #### 🤖 Anomaly Detection using Gaussian Distribution
 
-- ∑ [Anomaly Detection using Gaussian Distribution (Math)](homemade/anomaly_detection)
+- 📗 [Anomaly Detection using Gaussian Distribution (Math)](homemade/anomaly_detection)
 - ▶︎ Anomaly Detection (Demo)
 
 ## Neural Network (NN)
@@ -68,7 +68,7 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 
 #### 🤖 Multilayer Perceptron (MLP)
 
-- ∑ [Multilayer Perceptron (Math)](homemade/neural_network)
+- 📗 [Multilayer Perceptron (Math)](homemade/neural_network)
 - ▶︎ Multilayer Perceptron (Demo)
 
 ## Machine Learning Map
