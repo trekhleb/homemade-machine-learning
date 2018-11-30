@@ -2,17 +2,20 @@
 
 # Import dependencies.
 import numpy as np
-from ..utils.features import normalize, add_polynomials
+import math
+from ..utils.features import normalize, add_polynomials, add_sinusoids
 
 
 class LinearRegression:
     """Linear Regression Class"""
 
-    def __init__(self, data, labels, polynomial_degree=0):
+    def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0):
         """Linear regression constructor.
 
         :param data: training set.
         :param labels: training set outputs (correct values).
+        :param polynomial_degree: degree of additional polynomial features.
+        :param sinusoid_degree: multipliers for sinusoidal features.
         """
 
         # Normalize features and add ones column.
@@ -20,13 +23,14 @@ class LinearRegression:
             data_processed,
             features_mean,
             features_deviation
-        ) = LinearRegression.prepare_data(data, polynomial_degree)
+        ) = LinearRegression.prepare_data(data, polynomial_degree, sinusoid_degree)
 
         self.data = data_processed
         self.labels = labels
         self.features_mean = features_mean
         self.features_deviation = features_deviation
         self.polynomial_degree = polynomial_degree
+        self.sinusoid_degree = sinusoid_degree
 
         # Initialize model parameters.
         num_features = self.data.shape[1]
@@ -107,7 +111,11 @@ class LinearRegression:
         :param lambda_param: regularization parameter
         """
 
-        data_processed = LinearRegression.prepare_data(data, self.polynomial_degree)[0]
+        data_processed = LinearRegression.prepare_data(
+            data,
+            self.polynomial_degree,
+            self.sinusoid_degree
+        )[0]
 
         return self.cost_function(data_processed, labels, lambda_param)
 
@@ -145,7 +153,11 @@ class LinearRegression:
         """
 
         # Normalize features and add ones column.
-        data_processed = LinearRegression.prepare_data(data, self.polynomial_degree)[0]
+        data_processed = LinearRegression.prepare_data(
+            data,
+            self.polynomial_degree,
+            self.sinusoid_degree
+        )[0]
 
         # Do predictions using model hypothesis.
         predictions = LinearRegression.hypothesis(data_processed, self.theta)
@@ -168,7 +180,7 @@ class LinearRegression:
         return predictions
 
     @staticmethod
-    def prepare_data(data, polynomial_degree):
+    def prepare_data(data, polynomial_degree, sinusoid_degree):
         """Prepares data set for training on prediction"""
 
         # Calculate the number of examples.
@@ -177,17 +189,26 @@ class LinearRegression:
         # Prevent original data from being modified.
         data_processed = np.copy(data)
 
-        # Add polynomial features to data set.
-        if num_features >= 2 and polynomial_degree >= 2:
-            (first_half, second_half) = np.split(data_processed, 2, axis=1)
-            data_processed = add_polynomials(first_half, second_half, polynomial_degree)
-
         # Normalize data set.
         (
             data_processed,
             features_mean,
             features_deviation
         ) = normalize(data_processed)
+
+        # Add sinusoidal features to the dataset.
+        if sinusoid_degree:
+            data_processed = add_sinusoids(data_processed, sinusoid_degree)
+
+        # Add polynomial features to data set.
+        if polynomial_degree >= 2:
+            current_features_num = data_processed.shape[1]
+            middle_feature_index = math.floor(current_features_num / 2)
+
+            # Split features on halves.
+            (first_half, second_half) = np.split(data_processed, [middle_feature_index], axis=1)
+            # Generate polynomials.
+            data_processed = add_polynomials(first_half, second_half, polynomial_degree)
 
         # Add a column of ones to X.
         data_processed = np.hstack((np.ones((num_examples, 1)), data_processed))
