@@ -32,7 +32,7 @@ _Usage examples: spam-filters, language detection, finding similar documents, ha
 #### 🤖 Logistic Regression
 
 - 📗 [Logistic Regression (Math)](homemade/logistic_regression)
-- ▶︎ Logistic Regression (Demo)
+- ⚙️ Logistic Regression (Demo)
 
 ## Unsupervised Learning
 
@@ -47,7 +47,7 @@ _Usage examples: market segmentation, social networks analysis, organize computi
 #### 🤖 K-means Algorithm
 
 - 📗 [K-means Algorithm (Math)](homemade/k_means)
-- ▶︎ K-means Algorithm (Demo)
+- ⚙️ K-means Algorithm (Demo)
 
 ### Anomaly Detection
 
@@ -58,7 +58,7 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 #### 🤖 Anomaly Detection using Gaussian Distribution
 
 - 📗 [Anomaly Detection using Gaussian Distribution (Math)](homemade/anomaly_detection)
-- ▶︎ Anomaly Detection (Demo)
+- ⚙️ Anomaly Detection (Demo)
 
 ## Neural Network (NN)
 
@@ -69,7 +69,7 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 #### 🤖 Multilayer Perceptron (MLP)
 
 - 📗 [Multilayer Perceptron (Math)](homemade/neural_network)
-- ▶︎ Multilayer Perceptron (Demo)
+- ⚙️ Multilayer Perceptron (Demo)
 
 ## Machine Learning Map
 
