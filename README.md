@@ -18,10 +18,10 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- 📗 [Linear Regression (Math)](homemade/linear_regression)
-- ⚙️ [Univariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
-- ⚙️ [Multivariate Linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP and freedom index.
-- ⚙️ [Non-linear Regression (Demo)](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/non_linear_regression_demo.ipynb)
+- 📗 [Linear Regression Math](homemade/linear_regression)
+- ⚙️ [Univariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP per capita.
+- ⚙️ [Multivariate Linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP and freedom index.
+- ⚙️ [Non-linear Regression Demo](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/non_linear_regression_demo.ipynb)
 
 ### Classification
 
