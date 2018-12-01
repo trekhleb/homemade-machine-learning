@@ -18,8 +18,8 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 #### 🤖 Linear Regression
 
-- 📗 [Math | Linear Regression](homemade/linear_regression)
-- ⚙️ [Code | Linear Regression](homemade/linear_regression/linear_regression.py)
+- 📗 [Math | Linear Regression](homemade/linear_regression) - theory and links for further readings
+- ⚙️ [Code | Linear Regression](homemade/linear_regression/linear_regression.py) - implementation example
 - ▶️ [Demo | Univariate Linear Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/univariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP
 - ▶️ [Demo | Multivariate Linear Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/multivariate_linear_regression_demo.ipynb) - predict country happiness score by economy GDP and freedom index
 - ▶️ [Demo | Non-linear Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/linear_regression/non_linear_regression_demo.ipynb)
