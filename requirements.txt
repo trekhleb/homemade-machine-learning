@@ -6,3 +6,5 @@ plotly==3.4.1
 pylint==2.1.1
 scipy==1.1.0
 autopep8==1.4.3
+jupyter-contrib-nbextensions==0.5.0
+jupyter-nbextensions-configurator==0.4.0
