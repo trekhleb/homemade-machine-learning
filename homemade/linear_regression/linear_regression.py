@@ -2,8 +2,7 @@
 
 # Import dependencies.
 import numpy as np
-import math
-from ..utils.features import normalize, add_polynomials, add_sinusoids
+from ..utils.features import prepare_for_training
 
 
 class LinearRegression:
@@ -23,7 +22,7 @@ class LinearRegression:
             data_processed,
             features_mean,
             features_deviation
-        ) = LinearRegression.prepare_data(data, polynomial_degree, sinusoid_degree)
+        ) = prepare_for_training(data, polynomial_degree, sinusoid_degree)
 
         self.data = data_processed
         self.labels = labels
@@ -111,7 +110,7 @@ class LinearRegression:
         :param lambda_param: regularization parameter
         """
 
-        data_processed = LinearRegression.prepare_data(
+        data_processed = prepare_for_training(
             data,
             self.polynomial_degree,
             self.sinusoid_degree
@@ -153,7 +152,7 @@ class LinearRegression:
         """
 
         # Normalize features and add ones column.
-        data_processed = LinearRegression.prepare_data(
+        data_processed = prepare_for_training(
             data,
             self.polynomial_degree,
             self.sinusoid_degree
@@ -178,39 +177,3 @@ class LinearRegression:
         predictions = data @ theta
 
         return predictions
-
-    @staticmethod
-    def prepare_data(data, polynomial_degree, sinusoid_degree):
-        """Prepares data set for training on prediction"""
-
-        # Calculate the number of examples.
-        (num_examples, num_features) = data.shape
-
-        # Prevent original data from being modified.
-        data_processed = np.copy(data)
-
-        # Normalize data set.
-        (
-            data_processed,
-            features_mean,
-            features_deviation
-        ) = normalize(data_processed)
-
-        # Add sinusoidal features to the dataset.
-        if sinusoid_degree:
-            data_processed = add_sinusoids(data_processed, sinusoid_degree)
-
-        # Add polynomial features to data set.
-        if polynomial_degree >= 2:
-            current_features_num = data_processed.shape[1]
-            middle_feature_index = math.floor(current_features_num / 2)
-
-            # Split features on halves.
-            (first_half, second_half) = np.split(data_processed, [middle_feature_index], axis=1)
-            # Generate polynomials.
-            data_processed = add_polynomials(first_half, second_half, polynomial_degree)
-
-        # Add a column of ones to X.
-        data_processed = np.hstack((np.ones((num_examples, 1)), data_processed))
-
-        return data_processed, features_mean, features_deviation
