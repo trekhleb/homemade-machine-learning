@@ -5,10 +5,7 @@ from ..utils.hypothesis import sigmoid
 
 
 class LogisticRegression:
-    """Logistic Regression Class
-
-    Classifies the data into TWO classes (0 and 1).
-    """
+    """Logistic Regression Class"""
 
     def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0):
         """Logistic regression constructor.
@@ -35,25 +32,44 @@ class LogisticRegression:
 
         # Initialize model parameters.
         num_features = self.data.shape[1]
-        self.theta = np.zeros((num_features, 1))
+        num_unique_labels = np.unique(labels).shape[0]
+        self.thetas = np.zeros((num_unique_labels, num_features))
 
-    def train(self, lambda_param=0, max_iteration=500):
+    def train(self, lambda_param=0, max_iterations=500):
         """Trains logistic regression.
 
         :param lambda_param: regularization parameter
-        :param max_iteration: maximum number of gradient descent iterations.
+        :param max_iterations: maximum number of gradient descent iterations.
         """
 
-        # Run gradient descent.
-        (self.theta, cost_history) = LogisticRegression.gradient_descent(
-            self.data,
-            self.labels,
-            self.theta,
-            lambda_param,
-            max_iteration
-        )
+        # Init cost history array.
+        cost_histories = []
 
-        return self.theta, cost_history
+        # Use One-vs-All approach and detect the number of unique labels.
+        unique_labels = np.unique(self.labels)
+        num_features = self.data.shape[1]
+
+        # Train the model to distinguish each label particularly.
+        for label_index, unique_label in enumerate(unique_labels):
+            current_initial_theta = np.copy(self.thetas[label_index]).reshape((num_features, 1))
+
+            # Convert labels to array of 0s and 1s for current label class.
+            current_labels = (self.labels == unique_label).astype(float)
+
+            # Run gradient descent.
+            (current_theta, cost_history) = LogisticRegression.gradient_descent(
+                self.data,
+                current_labels,
+                current_initial_theta,
+                lambda_param,
+                max_iterations
+            )
+
+            self.thetas[label_index] = current_theta.T
+            cost_histories.append(cost_history)
+
+        # return self.theta, cost_history
+        return self.thetas, cost_histories
 
     @staticmethod
     def gradient_descent(data, labels, initial_theta, lambda_param, max_iteration=500):
