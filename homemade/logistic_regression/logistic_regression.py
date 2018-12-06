@@ -25,7 +25,7 @@ class LogisticRegression:
         self.theta = np.zeros((num_features, 1))
 
     def train(self, lambda_param=0):
-        LogisticRegression.gradient_descent(
+        (optimized_theta, cost_history) = LogisticRegression.gradient_descent(
             self.data,
             self.labels,
             self.theta,
@@ -73,39 +73,30 @@ class LogisticRegression:
         # Initialize J_history with zeros.
         cost_history = []
 
-        # print(initial_theta[1:, [0]])
+        num_features = data.shape[1]
 
-        # print(LogisticRegression.cost_function(
-        #     data,
-        #     labels,
-        #     initial_theta,
-        #     lambda_param
-        # ))
-        #
-        # print(LogisticRegression.gradient_step(
-        #     data,
-        #     labels,
-        #     initial_theta,
-        #     lambda_param
-        # ))
+        minification_result = minimize(
+            lambda current_theta: LogisticRegression.cost_function(
+                data, labels, current_theta.reshape((num_features, 1)), lambda_param
+            ),
+            initial_theta,
+            method='CG',
+            # jac=lambda current_theta: LogisticRegression.gradient_step(
+            #     data, labels, current_theta.reshape((num_features, 1)), lambda_param
+            # ),
+            # Record gradient descent progress for debugging.
+            callback=lambda current_theta: cost_history.append(LogisticRegression.cost_function(
+                data, labels, current_theta.reshape((num_features, 1)), lambda_param
+            )),
+            options={'maxiter': max_iteration}
+        )
 
-        # num_features = data.shape[1]
-        #
-        # minification_result = minimize(
-        #     lambda current_theta: LogisticRegression.cost_function(
-        #         data, labels, current_theta.reshape((num_features, 1)), lambda_param
-        #     ),
-        #     initial_theta,
-        #     method='CG',
-        #     jac=lambda current_theta: LogisticRegression.gradient_step(
-        #         data, labels, current_theta.reshape((num_features, 1)), lambda_param
-        #     ),
-        #     options={'maxiter': max_iteration}
-        # )
-        #
-        # print(minification_result)
+        if not minification_result.success:
+            raise ArithmeticError('Can not minimize cost function')
 
-        return cost_history
+        optimized_theta = minification_result.jac.reshape((num_features, 1))
+
+        return optimized_theta, cost_history
 
     @staticmethod
     def gradient_step(data, labels, theta, lambda_param):
@@ -152,8 +143,8 @@ class LogisticRegression:
         reg_param = (lambda_param / (2 * num_examples)) * (theta_cut.T @ theta_cut)
 
         # Calculate current predictions cost.
-        y_is_set_cost = labels.T @ np.log(predictions)
-        y_is_not_set_cost = (1 - labels).T @ np.log(1 - predictions)
+        y_is_set_cost = labels[labels == 1].T @ np.log(predictions[labels == 1])
+        y_is_not_set_cost = (1 - labels[labels == 0]).T @ np.log(1 - predictions[labels == 0])
         cost = (-1 / num_examples) * (y_is_set_cost + y_is_not_set_cost) + reg_param
 
         # Let's extract cost value from the one and only cost numpy matrix cell.
@@ -170,9 +161,6 @@ class LogisticRegression:
         :return: predictions made by model based on provided theta.
         """
 
-        # Get number of examples.
-        num_examples = data.shape[0]
-
         predictions = sigmoid(data @ theta)
 
-        return predictions.reshape((num_examples, 1))
+        return predictions
