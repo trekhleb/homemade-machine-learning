@@ -5,34 +5,55 @@ from ..utils.hypothesis import sigmoid
 
 
 class LogisticRegression:
-    """Logistic Regression Class"""
+    """Logistic Regression Class
 
-    def __init__(self, data, labels):
+    Classifies the data into TWO classes (0 and 1).
+    """
+
+    def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0):
+        """Logistic regression constructor.
+
+        :param data: training set.
+        :param labels: training set outputs (correct values).
+        :param polynomial_degree: degree of additional polynomial features.
+        :param sinusoid_degree: multipliers for sinusoidal features.
+        """
+
         # Normalize features and add ones column.
         (
             data_processed,
             features_mean,
             features_deviation
-        ) = prepare_for_training(data)
+        ) = prepare_for_training(data, polynomial_degree, sinusoid_degree)
 
         self.data = data_processed
         self.labels = labels
         self.features_mean = features_mean
         self.features_deviation = features_deviation
+        self.polynomial_degree = polynomial_degree
+        self.sinusoid_degree = sinusoid_degree
 
         # Initialize model parameters.
         num_features = self.data.shape[1]
         self.theta = np.zeros((num_features, 1))
 
-    def train(self, lambda_param=0):
-        (optimized_theta, cost_history) = LogisticRegression.gradient_descent(
+    def train(self, lambda_param=0, max_iteration=500):
+        """Trains logistic regression.
+
+        :param lambda_param: regularization parameter
+        :param max_iteration: maximum number of gradient descent iterations.
+        """
+
+        # Run gradient descent.
+        (self.theta, cost_history) = LogisticRegression.gradient_descent(
             self.data,
             self.labels,
             self.theta,
-            lambda_param
+            lambda_param,
+            max_iteration
         )
 
-        return optimized_theta, cost_history
+        return self.theta, cost_history
 
     @staticmethod
     def gradient_descent(data, labels, initial_theta, lambda_param, max_iteration=500):

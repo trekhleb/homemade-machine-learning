@@ -35,7 +35,7 @@ class LinearRegression:
         num_features = self.data.shape[1]
         self.theta = np.zeros((num_features, 1))
 
-    def train(self, alpha, lambda_param, num_iterations):
+    def train(self, alpha, lambda_param=0, num_iterations=500):
         """Trains linear regression.
 
         :param alpha: learning rate (the size of the step for gradient descent)
