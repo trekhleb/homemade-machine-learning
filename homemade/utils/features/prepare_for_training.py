@@ -5,7 +5,7 @@ from .add_sinusoids import add_sinusoids
 from .add_polynomials import add_polynomials
 
 
-def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0):
+def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0, normalize_data=True):
     """Prepares data set for training on prediction"""
 
     # Calculate the number of examples.
@@ -15,11 +15,14 @@ def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0):
     data_processed = np.copy(data)
 
     # Normalize data set.
-    (
-        data_processed,
-        features_mean,
-        features_deviation
-    ) = normalize(data_processed)
+    features_mean = 0
+    features_deviation = 0
+    if normalize_data:
+        (
+            data_processed,
+            features_mean,
+            features_deviation
+        ) = normalize(data_processed)
 
     # Add sinusoidal features to the dataset.
     if sinusoid_degree:
