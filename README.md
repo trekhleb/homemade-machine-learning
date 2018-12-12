@@ -32,8 +32,9 @@ _Usage examples: spam-filters, language detection, finding similar documents, ha
 
 #### 🤖 Logistic Regression
 
-- 📗 [Logistic Regression Math](homemade/logistic_regression)
-- ▶️ Logistic Regression Demo
+- 📗 [Math | Logistic Regression](homemade/logistic_regression)
+- ⚙️ [Code | Logistic Regression](homemade/logistic_regression/logistic_regression.py) - implementation example
+- ▶️ [Demo | Logistic Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/logistic_regression/microchips_tests.ipynb)
 
 ## Unsupervised Learning
 
