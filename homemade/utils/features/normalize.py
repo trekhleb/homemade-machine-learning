@@ -22,7 +22,8 @@ def normalize(features):
 
     # Subtract mean values from each feature (column) of every example (row)
     # to make all features be spread around zero.
-    features_normalized -= features_mean
+    if features.shape[0] > 1:
+        features_normalized -= features_mean
 
     # Normalize each feature values so that all features are close to [-1:1] boundaries.
     # Also prevent division by zero error.
