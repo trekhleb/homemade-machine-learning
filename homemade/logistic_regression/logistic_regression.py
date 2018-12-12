@@ -25,6 +25,7 @@ class LogisticRegression:
 
         self.data = data_processed
         self.labels = labels
+        self.unique_labels = np.unique(labels)
         self.features_mean = features_mean
         self.features_deviation = features_deviation
         self.polynomial_degree = polynomial_degree
@@ -35,7 +36,7 @@ class LogisticRegression:
         num_unique_labels = np.unique(labels).shape[0]
         self.thetas = np.zeros((num_unique_labels, num_features))
 
-    def train(self, lambda_param=0, max_iterations=500):
+    def train(self, lambda_param=0, max_iterations=1000):
         """Trains logistic regression.
 
         :param lambda_param: regularization parameter
@@ -45,12 +46,12 @@ class LogisticRegression:
         # Init cost history array.
         cost_histories = []
 
-        # Use One-vs-All approach and detect the number of unique labels.
-        unique_labels = np.unique(self.labels)
+        # Use One-vs-All approach and train the model several times for each label class.
+
         num_features = self.data.shape[1]
 
         # Train the model to distinguish each label particularly.
-        for label_index, unique_label in enumerate(unique_labels):
+        for label_index, unique_label in enumerate(self.unique_labels):
             current_initial_theta = np.copy(self.thetas[label_index]).reshape((num_features, 1))
 
             # Convert labels to array of 0s and 1s for current label class.
@@ -62,7 +63,7 @@ class LogisticRegression:
                 current_labels,
                 current_initial_theta,
                 lambda_param,
-                max_iterations
+                max_iterations,
             )
 
             self.thetas[label_index] = current_theta.T
@@ -71,8 +72,22 @@ class LogisticRegression:
         # return self.theta, cost_history
         return self.thetas, cost_histories
 
+    def predict(self, data):
+        num_examples = data.shape[0]
+
+        data_processed = prepare_for_training(data, self.polynomial_degree, self.sinusoid_degree)[0]
+
+        probability_predictions = LogisticRegression.hypothesis(data_processed, self.thetas.T)
+        max_probability_indices = np.argmax(probability_predictions, axis=1)
+        class_predictions = np.empty(max_probability_indices.shape, dtype=object)
+
+        for index, label in enumerate(self.unique_labels):
+            class_predictions[max_probability_indices == index] = label
+
+        return class_predictions.reshape((num_examples, 1))
+
     @staticmethod
-    def gradient_descent(data, labels, initial_theta, lambda_param, max_iteration=500):
+    def gradient_descent(data, labels, initial_theta, lambda_param, max_iteration):
         """GRADIENT DESCENT function.
 
         Iteratively optimizes theta model parameters.
@@ -113,10 +128,10 @@ class LogisticRegression:
 
         # Throw an error in case if gradient descent ended up with error.
         if not minification_result.success:
-            raise ArithmeticError('Can not minimize cost function')
+            raise ArithmeticError('Can not minimize cost function: ' + minification_result.message)
 
         # Reshape the final version of model parameters.
-        optimized_theta = minification_result.jac.reshape((num_features, 1))
+        optimized_theta = minification_result.x.reshape((num_features, 1))
 
         return optimized_theta, cost_history
 
