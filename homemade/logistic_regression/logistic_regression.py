@@ -7,13 +7,14 @@ from ..utils.hypothesis import sigmoid
 class LogisticRegression:
     """Logistic Regression Class"""
 
-    def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0):
+    def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0, normalize_data=False):
         """Logistic regression constructor.
 
         :param data: training set.
         :param labels: training set outputs (correct values).
         :param polynomial_degree: degree of additional polynomial features.
         :param sinusoid_degree: multipliers for sinusoidal features.
+        :param normalize_data: flag that indicates that features should be normalized.
         """
 
         # Normalize features and add ones column.
@@ -21,7 +22,7 @@ class LogisticRegression:
             data_processed,
             features_mean,
             features_deviation
-        ) = prepare_for_training(data, polynomial_degree, sinusoid_degree)
+        ) = prepare_for_training(data, polynomial_degree, sinusoid_degree, normalize_data)
 
         self.data = data_processed
         self.labels = labels
@@ -30,6 +31,7 @@ class LogisticRegression:
         self.features_deviation = features_deviation
         self.polynomial_degree = polynomial_degree
         self.sinusoid_degree = sinusoid_degree
+        self.normalize_data = normalize_data
 
         # Initialize model parameters.
         num_features = self.data.shape[1]
@@ -75,7 +77,12 @@ class LogisticRegression:
     def predict(self, data):
         num_examples = data.shape[0]
 
-        data_processed = prepare_for_training(data, self.polynomial_degree, self.sinusoid_degree)[0]
+        data_processed = prepare_for_training(
+            data,
+            self.polynomial_degree,
+            self.sinusoid_degree,
+            self.normalize_data
+        )[0]
 
         probability_predictions = LogisticRegression.hypothesis(data_processed, self.thetas.T)
         max_probability_indices = np.argmax(probability_predictions, axis=1)
