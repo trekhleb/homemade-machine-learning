@@ -1,5 +1,7 @@
 # Homemade Machine Learning
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/trekhleb/homemade-machine-learning/master?filepath=notebooks)
+
 _For Octave/MatLab version of this repository please check [machine-learning-octave](https://github.com/trekhleb/machine-learning-octave) project._
 
 > This repository contains examples of popular machine learning algorithms implemented in **Python** with mathematics behind them being explained. Each algorithm has interactive **Jupyter Notebook** demo that allows you to play with training data, algorithms configurations and to immediately see the results, charts and predictions in your browser. In most cases the explanations are based on great [machine learning course](https://www.coursera.org/learn/machine-learning) by Andrew Ng.
