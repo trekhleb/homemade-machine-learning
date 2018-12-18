@@ -51,8 +51,9 @@ _Usage examples: market segmentation, social networks analysis, organize computi
 
 #### 🤖 K-means Algorithm
 
-- 📗 [K-means Algorithm Math](homemade/k_means)
-- ▶️ K-means Algorithm Demo
+- 📗 [Math | K-means Algorithm](homemade/k_means)
+- ⚙️ Code | Linear Regression
+- ▶️ Demo | K-means Algorithm
 
 ### Anomaly Detection
 
@@ -62,8 +63,9 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 
 #### 🤖 Anomaly Detection using Gaussian Distribution
 
-- 📗 [Anomaly Detection using Gaussian Distribution Math](homemade/anomaly_detection)
-- ▶️ Anomaly Detection Demo
+- 📗 [Math | Anomaly Detection using Gaussian Distribution](homemade/anomaly_detection)
+- ⚙️ Code | Anomaly Detection using Gaussian Distribution
+- ▶️ Demo | Anomaly Detection
 
 ## Neural Network (NN)
 
@@ -73,8 +75,9 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 
 #### 🤖 Multilayer Perceptron (MLP)
 
-- 📗 [Multilayer Perceptron Math](homemade/neural_network)
-- ▶️ Multilayer Perceptron Demo
+- 📗 [Math | Multilayer Perceptron](homemade/neural_network)
+- ⚙️ Code | Multilayer Perceptron
+- ▶️ Demo | Multilayer Perceptron
 
 ## Machine Learning Map
 
