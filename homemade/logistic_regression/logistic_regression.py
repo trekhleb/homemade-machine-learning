@@ -95,7 +95,7 @@ class LogisticRegression:
 
     @staticmethod
     def gradient_descent(data, labels, initial_theta, lambda_param, max_iteration):
-        """GRADIENT DESCENT function.
+        """Gradient descent function.
 
         Iteratively optimizes theta model parameters.
 
@@ -106,7 +106,7 @@ class LogisticRegression:
         :param max_iteration: maximum number of gradient descent steps.
         """
 
-        # Initialize J_history with zeros.
+        # Initialize cost history list.
         cost_history = []
 
         # Calculate the number of features.
