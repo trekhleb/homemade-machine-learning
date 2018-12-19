@@ -36,8 +36,8 @@ _Usage examples: spam-filters, language detection, finding similar documents, ha
 
 - 📗 [Math | Logistic Regression](homemade/logistic_regression) - theory and links for further readings
 - ⚙️ [Code | Logistic Regression](homemade/logistic_regression/logistic_regression.py) - implementation example
-- ▶️ [Demo | Linear Logistic Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/logistic_regression/linear_logistic_regression_demo.ipynb) - predict Iris flower `class` based on `petal_length` and `petal_width`
-- ▶️ [Demo | Non-linear Logistic Regression](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/logistic_regression/non_linear_logistic_regression_demo.ipynb) - predict microchip `validity` based on `param_1` and `param_2`
+- ▶️ [Demo | Logistic Regression With Linear Boundary](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/logistic_regression/logistic_regression_with_linear_boundary_demo.ipynb) - predict Iris flower `class` based on `petal_length` and `petal_width`
+- ▶️ [Demo | Logistic Regression With Non-Linear Boundary](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/logistic_regression/logistic_regression_with_non_linear_boundary_demo.ipynb) - predict microchip `validity` based on `param_1` and `param_2`
 
 ## Unsupervised Learning
 

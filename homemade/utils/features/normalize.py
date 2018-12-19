@@ -12,7 +12,7 @@ def normalize(features):
     """
 
     # Copy original array to prevent it from changes.
-    features_normalized = np.copy(features)
+    features_normalized = np.copy(features).astype(float)
 
     # Get average values for each feature (column) in X.
     features_mean = np.mean(features, 0)
