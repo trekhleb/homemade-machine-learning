@@ -26,81 +26,88 @@ class MultilayerPerceptron:
         self.epsilon = epsilon
 
         # Randomly initialize the weights for each neural network layer.
-        self.thetas = MultilayerPerceptron.init_layers_thetas(layers, epsilon)
+        self.thetas = MultilayerPerceptron.thetas_init(layers, epsilon)
 
     def train(self, regularization_param=0, max_iterations=1000):
         # Flatten model thetas for gradient descent.
-        unrolled_thetas = MultilayerPerceptron.unroll_thetas(self.thetas)
+        unrolled_thetas = MultilayerPerceptron.thetas_unroll(self.thetas)
 
         # Init cost history array.
         cost_histories = []
 
-        initial_cost = MultilayerPerceptron.cost_function(
+        # Run gradient descent.
+        (current_theta, cost_history) = MultilayerPerceptron.gradient_descent(
             self.data,
             self.labels,
-            self.thetas,
+            unrolled_thetas,
             self.layers,
-            regularization_param
+            regularization_param,
+            max_iterations,
         )
-
-        print(initial_cost)
-
-        # Run gradient descent.
-        # (current_theta, cost_history) = MultilayerPerceptron.gradient_descent(
-        #     self.data,
-        #     current_labels,
-        #     unrolled_thetas,
-        #     regularization_param,
-        #     max_iterations,
-        # )
 
         return self.thetas, cost_histories
 
-    # @staticmethod
-    # def gradient_descent(data, labels, initial_theta, lambda_param, max_iteration):
-    #     """Gradient descent function.
-    #
-    #     Iteratively optimizes theta model parameters.
-    #
-    #     :param data: the set of training or test data.
-    #     :param labels: training set outputs (0 or 1 that defines the class of an example).
-    #     :param initial_theta: initial model parameters.
-    #     :param lambda_param: regularization parameter.
-    #     :param max_iteration: maximum number of gradient descent steps.
-    #     """
-    #
-    #     # Initialize cost history list.
-    #     cost_history = []
-    #
-    #     # Launch gradient descent.
-    #     minification_result = minimize(
-    #         # Function that we're going to minimize.
-    #         lambda current_theta: MultilayerPerceptron.cost_function(
-    #             data, labels, current_theta.reshape((num_features, 1)), lambda_param
-    #         ),
-    #         # Initial values of model parameter.
-    #         initial_theta,
-    #         # We will use conjugate gradient algorithm.
-    #         method='CG',
-    #         # Function that will help to calculate gradient direction on each step.
-    #         jac=lambda current_theta: MultilayerPerceptron.gradient_step(
-    #             data, labels, current_theta.reshape((num_features, 1)), lambda_param
-    #         ),
-    #         # Record gradient descent progress for debugging.
-    #         callback=lambda current_theta: cost_history.append(MultilayerPerceptron.cost_function(
-    #             data, labels, current_theta.reshape((num_features, 1)), lambda_param
-    #         )),
-    #         options={'maxiter': max_iteration}
-    #     )
-    #
-    #     # Throw an error in case if gradient descent ended up with error.
-    #     if not minification_result.success:
-    #         raise ArithmeticError('Can not minimize cost function: ' + minification_result.message)
-    #
-    #     # Reshape the final version of model parameters.
-    #     optimized_theta = minification_result.x.reshape((num_features, 1))
-    #
-    #     return optimized_theta, cost_history
+    @staticmethod
+    def gradient_descent(data, labels, initial_theta, layers, regularization_param, max_iteration):
+        """Gradient descent function.
+
+        Iteratively optimizes theta model parameters.
+
+        :param data: the set of training or test data.
+        :param labels: training set outputs (0 or 1 that defines the class of an example).
+        :param initial_theta: initial model parameters.
+        :param layers: model layers configuration.
+        :param regularization_param: regularization parameter.
+        :param max_iteration: maximum number of gradient descent steps.
+        """
+
+        # Initialize cost history list.
+        cost_history = []
+
+        # Launch gradient descent.
+        minification_result = minimize(
+            # Function that we're going to minimize.
+            lambda current_theta: MultilayerPerceptron.cost_function(
+                data, labels, current_theta, layers, regularization_param
+            ),
+            # Initial values of model parameter.
+            initial_theta,
+            # We will use conjugate gradient algorithm.
+            method='CG',
+            # Function that will help to calculate gradient direction on each step.
+            jac=lambda current_theta: MultilayerPerceptron.gradient_step(
+                data, labels, current_theta, regularization_param
+            ),
+            # Record gradient descent progress for debugging.
+            callback=lambda current_theta: cost_history.append(MultilayerPerceptron.cost_function(
+                data, labels, current_theta, layers, regularization_param
+            )),
+            options={'maxiter': max_iteration}
+        )
+
+        # Throw an error in case if gradient descent ended up with error.
+        if not minification_result.success:
+            raise ArithmeticError('Can not minimize cost function: ' + minification_result.message)
+
+        optimized_theta = minification_result.x
+
+        return optimized_theta, cost_history
+
+    @staticmethod
+    def gradient_step(unrolled_thetas, layers):
+        """Gradient step function.
+
+        Computes the cost and gradient of the neural network for unrolled theta parameters.
+
+        :param unrolled_thetas: flat vector of model parameters
+        :param layers: model layers configuration
+        """
+
+        # Reshape nn_params back into the matrix parameters.
+        thetas = MultilayerPerceptron.thetas_roll(unrolled_thetas, layers)
+
+        # Do backpropagation.
+        MultilayerPerceptron.back_propagation()
 
     @staticmethod
     def cost_function(data, labels, thetas, layers, regularization_param):
@@ -176,7 +183,11 @@ class MultilayerPerceptron:
         return layer_in[:, 1:]
 
     @staticmethod
-    def init_layers_thetas(layers, epsilon):
+    def back_propagation():
+        pass
+
+    @staticmethod
+    def thetas_init(layers, epsilon):
         """Randomly initialize the weights for each neural network layer
 
         Each layer will have its own theta matrix W with L_in incoming connections and L_out
@@ -204,13 +215,40 @@ class MultilayerPerceptron:
         return thetas
 
     @staticmethod
-    def unroll_thetas(thetas):
+    def thetas_unroll(thetas):
         """Unrolls cells of theta matrices into one long vector."""
 
-        unrolled_thetas = []
+        unrolled_thetas = np.array([])
         num_theta_layers = len(thetas)
         for theta_layer_index in range(num_theta_layers):
             # Unroll cells into vector form.
-            unrolled_thetas.extend(thetas[theta_layer_index].flatten())
+            unrolled_thetas = np.hstack((unrolled_thetas, thetas[theta_layer_index].flatten()))
 
         return unrolled_thetas
+
+    @staticmethod
+    def thetas_roll(unrolled_thetas, layers):
+        """Rolls NN params vector into the matrix"""
+
+        # Get total numbers of layers.
+        num_layers = len(layers)
+
+        # Init rolled thetas dictionary.
+        thetas = {}
+        unrolled_shift = 0
+
+        for layer_index in range(num_layers - 1):
+            layers_in = layers[layer_index]
+            layers_out = layers[layer_index + 1]
+
+            thetas_width = layers_in + 1  # We need to remember about bias unit.
+            thetas_height = layers_out
+            thetas_volume = thetas_width * thetas_height
+
+            # We need to remember about bias units when rolling up params.
+            start_index = unrolled_shift
+            end_index = unrolled_shift + thetas_volume
+            layer_thetas_unrolled = unrolled_thetas[start_index:end_index]
+            thetas[layer_index] = layer_thetas_unrolled.reshape((thetas_height, thetas_width))
+
+        return thetas
