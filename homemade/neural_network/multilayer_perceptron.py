@@ -24,6 +24,7 @@ class MultilayerPerceptron:
         self.labels = labels
         self.layers = layers
         self.epsilon = epsilon
+        self.normalize_data = normalize_data
 
         # Randomly initialize the weights for each neural network layer.
         self.thetas = MultilayerPerceptron.thetas_init(layers, epsilon)
@@ -32,11 +33,8 @@ class MultilayerPerceptron:
         # Flatten model thetas for gradient descent.
         unrolled_thetas = MultilayerPerceptron.thetas_unroll(self.thetas)
 
-        # Init cost history array.
-        cost_histories = []
-
         # Run gradient descent.
-        (current_theta, cost_history) = MultilayerPerceptron.gradient_descent(
+        (optimized_thetas, cost_history) = MultilayerPerceptron.gradient_descent_manual(
             self.data,
             self.labels,
             unrolled_thetas,
@@ -45,7 +43,25 @@ class MultilayerPerceptron:
             max_iterations,
         )
 
-        return self.thetas, cost_histories
+        # Memorize optimized theta parameters.
+        self.thetas = MultilayerPerceptron.thetas_roll(optimized_thetas, self.layers)
+
+        return self.thetas, cost_history
+
+    def predict(self, data):
+        """Predictions function that does classification using trained model"""
+
+        data_processed = prepare_for_training(data, normalize_data=self.normalize_data)[0]
+
+        num_examples = data_processed.shape[0]
+
+        # Do feedforward propagation with trained neural network params.
+        predictions = MultilayerPerceptron.feedforward_propagation(
+            data_processed, self.thetas, self.layers
+        )
+
+        # Return the index of the output neuron with the highest probability.
+        return np.argmax(predictions, axis=1).reshape((num_examples, 1))
 
     @staticmethod
     def gradient_descent(data, labels, unrolled_theta, layers, regularization_param, max_iteration):
@@ -104,6 +120,44 @@ class MultilayerPerceptron:
         return optimized_theta, cost_history
 
     @staticmethod
+    def gradient_descent_manual(data, labels, unrolled_theta, layers, regularization_param, max_iteration):
+        """Gradient descent function.
+
+        Iteratively optimizes theta model parameters.
+
+        :param data: the set of training or test data.
+        :param labels: training set outputs (0 or 1 that defines the class of an example).
+        :param unrolled_theta: initial model parameters.
+        :param layers: model layers configuration.
+        :param regularization_param: regularization parameter.
+        :param max_iteration: maximum number of gradient descent steps.
+        """
+
+        optimized_theta = unrolled_theta
+
+        # Initialize cost history list.
+        cost_history = []
+
+        for iteration_index in range(max_iteration):
+            cost = MultilayerPerceptron.cost_function(
+                data,
+                labels,
+                MultilayerPerceptron.thetas_roll(optimized_theta, layers),
+                layers,
+                regularization_param
+            )
+
+            cost_history.append(cost)
+
+            theta_gradient = MultilayerPerceptron.gradient_step(
+                data, labels, optimized_theta, layers, regularization_param
+            )
+
+            optimized_theta = optimized_theta - theta_gradient
+
+        return optimized_theta, cost_history
+
+    @staticmethod
     def gradient_step(data, labels, unrolled_thetas, layers, regularization_param):
         """Gradient step function.
 
@@ -125,7 +179,9 @@ class MultilayerPerceptron:
         )
 
         # Unroll thetas gradients.
-        return MultilayerPerceptron.thetas_unroll(thetas_rolled_gradients)
+        thetas_unrolled_gradients = MultilayerPerceptron.thetas_unroll(thetas_rolled_gradients)
+
+        return thetas_unrolled_gradients
 
     @staticmethod
     def cost_function(data, labels, thetas, layers, regularization_param):
@@ -315,6 +371,12 @@ class MultilayerPerceptron:
             out_count = layers[layer_index + 1]
             thetas[layer_index] = np.random.rand(out_count, in_count + 1) * 2 * epsilon - epsilon
 
+        # thetas[0] = np.array([[-0.092631,  -0.061615,  -0.042194]])
+        # thetas[1] = np.array([
+        #     [0.047492, -0.074013],
+        #     [-0.056754, 0.022874],
+        # ])
+
         return thetas
 
     @staticmethod
@@ -353,5 +415,8 @@ class MultilayerPerceptron:
             end_index = unrolled_shift + thetas_volume
             layer_thetas_unrolled = unrolled_thetas[start_index:end_index]
             thetas[layer_index] = layer_thetas_unrolled.reshape((thetas_height, thetas_width))
+
+            # Shift frame to the right.
+            unrolled_shift = unrolled_shift + thetas_volume
 
         return thetas
