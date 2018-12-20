@@ -48,14 +48,14 @@ class MultilayerPerceptron:
         return self.thetas, cost_histories
 
     @staticmethod
-    def gradient_descent(data, labels, initial_theta, layers, regularization_param, max_iteration):
+    def gradient_descent(data, labels, unrolled_theta, layers, regularization_param, max_iteration):
         """Gradient descent function.
 
         Iteratively optimizes theta model parameters.
 
         :param data: the set of training or test data.
         :param labels: training set outputs (0 or 1 that defines the class of an example).
-        :param initial_theta: initial model parameters.
+        :param unrolled_theta: initial model parameters.
         :param layers: model layers configuration.
         :param regularization_param: regularization parameter.
         :param max_iteration: maximum number of gradient descent steps.
@@ -67,21 +67,31 @@ class MultilayerPerceptron:
         # Launch gradient descent.
         minification_result = minimize(
             # Function that we're going to minimize.
-            lambda current_theta: MultilayerPerceptron.cost_function(
-                data, labels, current_theta, layers, regularization_param
+            lambda current_unrolled_theta: MultilayerPerceptron.cost_function(
+                data,
+                labels,
+                MultilayerPerceptron.thetas_roll(current_unrolled_theta, layers),
+                layers,
+                regularization_param
             ),
             # Initial values of model parameter.
-            initial_theta,
+            unrolled_theta,
             # We will use conjugate gradient algorithm.
             method='CG',
             # Function that will help to calculate gradient direction on each step.
-            jac=lambda current_theta: MultilayerPerceptron.gradient_step(
-                data, labels, current_theta, layers, regularization_param
+            jac=lambda current_unrolled_theta: MultilayerPerceptron.gradient_step(
+                data, labels, current_unrolled_theta, layers, regularization_param
             ),
             # Record gradient descent progress for debugging.
-            callback=lambda current_theta: cost_history.append(MultilayerPerceptron.cost_function(
-                data, labels, current_theta, layers, regularization_param
-            )),
+            callback=lambda current_unrolled_theta: cost_history.append(
+                MultilayerPerceptron.cost_function(
+                    data,
+                    labels,
+                    MultilayerPerceptron.thetas_roll(current_unrolled_theta, layers),
+                    layers,
+                    regularization_param
+                )
+            ),
             options={'maxiter': max_iteration}
         )
 
@@ -101,7 +111,7 @@ class MultilayerPerceptron:
 
         :param data: training set.
         :param labels: training set labels.
-        :param unrolled_thetas: flat vector of model parameters.
+        :param unrolled_thetas: model parameters.
         :param layers: model layers configuration.
         :param regularization_param: parameters that fights with model over-fitting.
         """
