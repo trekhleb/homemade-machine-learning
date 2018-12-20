@@ -77,7 +77,7 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 #### 🤖 Multilayer Perceptron (MLP)
 
 - 📗 [Math | Multilayer Perceptron](homemade/neural_network)
-- ⚙️ Code | Multilayer Perceptron
+- ⚙️ [Code | Multilayer Perceptron](https://github.com/trekhleb/homemade-machine-learning/blob/master/homemade/neural_network/multilayer_perceptron.py)
 - ▶️ Demo | Multilayer Perceptron
 
 ## Machine Learning Map
