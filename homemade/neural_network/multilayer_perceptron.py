@@ -29,18 +29,19 @@ class MultilayerPerceptron:
         # Randomly initialize the weights for each neural network layer.
         self.thetas = MultilayerPerceptron.thetas_init(layers, epsilon)
 
-    def train(self, regularization_param=0, max_iterations=1000):
+    def train(self, regularization_param=0, max_iterations=1000, alpha=1):
         # Flatten model thetas for gradient descent.
         unrolled_thetas = MultilayerPerceptron.thetas_unroll(self.thetas)
 
         # Run gradient descent.
-        (optimized_thetas, cost_history) = MultilayerPerceptron.gradient_descent_manual(
+        (optimized_thetas, cost_history) = MultilayerPerceptron.gradient_descent(
             self.data,
             self.labels,
             unrolled_thetas,
             self.layers,
             regularization_param,
             max_iterations,
+            alpha
         )
 
         # Memorize optimized theta parameters.
@@ -64,7 +65,9 @@ class MultilayerPerceptron:
         return np.argmax(predictions, axis=1).reshape((num_examples, 1))
 
     @staticmethod
-    def gradient_descent(data, labels, unrolled_theta, layers, regularization_param, max_iteration):
+    def gradient_descent_cg(
+        data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
+    ):
         """Gradient descent function.
 
         Iteratively optimizes theta model parameters.
@@ -75,6 +78,7 @@ class MultilayerPerceptron:
         :param layers: model layers configuration.
         :param regularization_param: regularization parameter.
         :param max_iteration: maximum number of gradient descent steps.
+        :param alpha: gradient descent step size.
         """
 
         # Initialize cost history list.
@@ -95,7 +99,7 @@ class MultilayerPerceptron:
             # We will use conjugate gradient algorithm.
             method='CG',
             # Function that will help to calculate gradient direction on each step.
-            jac=lambda current_unrolled_theta: MultilayerPerceptron.gradient_step(
+            jac=lambda current_unrolled_theta: alpha * MultilayerPerceptron.gradient_step(
                 data, labels, current_unrolled_theta, layers, regularization_param
             ),
             # Record gradient descent progress for debugging.
@@ -120,7 +124,9 @@ class MultilayerPerceptron:
         return optimized_theta, cost_history
 
     @staticmethod
-    def gradient_descent_manual(data, labels, unrolled_theta, layers, regularization_param, max_iteration):
+    def gradient_descent(
+        data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
+    ):
         """Gradient descent function.
 
         Iteratively optimizes theta model parameters.
@@ -131,6 +137,7 @@ class MultilayerPerceptron:
         :param layers: model layers configuration.
         :param regularization_param: regularization parameter.
         :param max_iteration: maximum number of gradient descent steps.
+        :param alpha: gradient descent step size.
         """
 
         optimized_theta = unrolled_theta
@@ -153,7 +160,7 @@ class MultilayerPerceptron:
                 data, labels, optimized_theta, layers, regularization_param
             )
 
-            optimized_theta = optimized_theta - theta_gradient
+            optimized_theta = optimized_theta - alpha * theta_gradient
 
         return optimized_theta, cost_history
 
@@ -370,12 +377,6 @@ class MultilayerPerceptron:
             in_count = layers[layer_index]
             out_count = layers[layer_index + 1]
             thetas[layer_index] = np.random.rand(out_count, in_count + 1) * 2 * epsilon - epsilon
-
-        # thetas[0] = np.array([[-0.092631,  -0.061615,  -0.042194]])
-        # thetas[1] = np.array([
-        #     [0.047492, -0.074013],
-        #     [-0.056754, 0.022874],
-        # ])
 
         return thetas
 
