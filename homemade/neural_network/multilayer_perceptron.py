@@ -1,5 +1,4 @@
 import numpy as np
-from scipy.optimize import minimize
 from ..utils.features import prepare_for_training
 from ..utils.hypothesis import sigmoid, sigmoid_gradient
 
@@ -65,65 +64,6 @@ class MultilayerPerceptron:
         return np.argmax(predictions, axis=1).reshape((num_examples, 1))
 
     @staticmethod
-    def gradient_descent_cg(
-        data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
-    ):
-        """Gradient descent function.
-
-        Iteratively optimizes theta model parameters.
-
-        :param data: the set of training or test data.
-        :param labels: training set outputs (0 or 1 that defines the class of an example).
-        :param unrolled_theta: initial model parameters.
-        :param layers: model layers configuration.
-        :param regularization_param: regularization parameter.
-        :param max_iteration: maximum number of gradient descent steps.
-        :param alpha: gradient descent step size.
-        """
-
-        # Initialize cost history list.
-        cost_history = []
-
-        # Launch gradient descent.
-        minification_result = minimize(
-            # Function that we're going to minimize.
-            lambda current_unrolled_theta: MultilayerPerceptron.cost_function(
-                data,
-                labels,
-                MultilayerPerceptron.thetas_roll(current_unrolled_theta, layers),
-                layers,
-                regularization_param
-            ),
-            # Initial values of model parameter.
-            unrolled_theta,
-            # We will use conjugate gradient algorithm.
-            method='CG',
-            # Function that will help to calculate gradient direction on each step.
-            jac=lambda current_unrolled_theta: alpha * MultilayerPerceptron.gradient_step(
-                data, labels, current_unrolled_theta, layers, regularization_param
-            ),
-            # Record gradient descent progress for debugging.
-            callback=lambda current_unrolled_theta: cost_history.append(
-                MultilayerPerceptron.cost_function(
-                    data,
-                    labels,
-                    MultilayerPerceptron.thetas_roll(current_unrolled_theta, layers),
-                    layers,
-                    regularization_param
-                )
-            ),
-            options={'maxiter': max_iteration}
-        )
-
-        # Throw an error in case if gradient descent ended up with error.
-        if not minification_result.success:
-            raise ArithmeticError('Can not minimize cost function: ' + minification_result.message)
-
-        optimized_theta = minification_result.x
-
-        return optimized_theta, cost_history
-
-    @staticmethod
     def gradient_descent(
         data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
     ):
@@ -146,6 +86,7 @@ class MultilayerPerceptron:
         cost_history = []
 
         for iteration_index in range(max_iteration):
+            # Get current cost.
             cost = MultilayerPerceptron.cost_function(
                 data,
                 labels,
@@ -154,12 +95,15 @@ class MultilayerPerceptron:
                 regularization_param
             )
 
+            # Save current cost value to build plots later.
             cost_history.append(cost)
 
+            # Get the next gradient step directions.
             theta_gradient = MultilayerPerceptron.gradient_step(
                 data, labels, optimized_theta, layers, regularization_param
             )
 
+            # Adjust theta values according to the next gradient step.
             optimized_theta = optimized_theta - alpha * theta_gradient
 
         return optimized_theta, cost_history
