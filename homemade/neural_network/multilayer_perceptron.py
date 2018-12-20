@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import minimize
 from ..utils.features import prepare_for_training
-from ..utils.hypothesis import sigmoid
+from ..utils.hypothesis import sigmoid, sigmoid_gradient
 
 
 class MultilayerPerceptron:
@@ -76,7 +76,7 @@ class MultilayerPerceptron:
             method='CG',
             # Function that will help to calculate gradient direction on each step.
             jac=lambda current_theta: MultilayerPerceptron.gradient_step(
-                data, labels, current_theta, regularization_param
+                data, labels, current_theta, layers, regularization_param
             ),
             # Record gradient descent progress for debugging.
             callback=lambda current_theta: cost_history.append(MultilayerPerceptron.cost_function(
@@ -94,20 +94,28 @@ class MultilayerPerceptron:
         return optimized_theta, cost_history
 
     @staticmethod
-    def gradient_step(unrolled_thetas, layers):
+    def gradient_step(data, labels, unrolled_thetas, layers, regularization_param):
         """Gradient step function.
 
         Computes the cost and gradient of the neural network for unrolled theta parameters.
 
-        :param unrolled_thetas: flat vector of model parameters
-        :param layers: model layers configuration
+        :param data: training set.
+        :param labels: training set labels.
+        :param unrolled_thetas: flat vector of model parameters.
+        :param layers: model layers configuration.
+        :param regularization_param: parameters that fights with model over-fitting.
         """
 
         # Reshape nn_params back into the matrix parameters.
         thetas = MultilayerPerceptron.thetas_roll(unrolled_thetas, layers)
 
         # Do backpropagation.
-        MultilayerPerceptron.back_propagation()
+        thetas_rolled_gradients = MultilayerPerceptron.back_propagation(
+            data, labels, thetas, layers, regularization_param
+        )
+
+        # Unroll thetas gradients.
+        return MultilayerPerceptron.thetas_unroll(thetas_rolled_gradients)
 
     @staticmethod
     def cost_function(data, labels, thetas, layers, regularization_param):
@@ -169,22 +177,107 @@ class MultilayerPerceptron:
         num_examples = data.shape[0]
 
         # Input layer (l=1)
-        layer_in = data
+        in_layer_activation = data
 
         # Propagate to hidden layers.
         for layer_index in range(num_layers - 1):
             theta = thetas[layer_index]
-            layer_out = sigmoid(layer_in @ theta.T)
+            out_layer_activation = sigmoid(in_layer_activation @ theta.T)
             # Add bias units.
-            layer_out = np.hstack((np.ones((num_examples, 1)), layer_out))
-            layer_in = layer_out
+            out_layer_activation = np.hstack((np.ones((num_examples, 1)), out_layer_activation))
+            in_layer_activation = out_layer_activation
 
         # Output layer should not contain bias units.
-        return layer_in[:, 1:]
+        return in_layer_activation[:, 1:]
 
     @staticmethod
-    def back_propagation():
-        pass
+    def back_propagation(data, labels, thetas, layers, regularization_param):
+        """Backpropagation function"""
+
+        # Get total number of layers.
+        num_layers = len(layers)
+
+        # Get total number of training examples and features.
+        (num_examples, num_features) = data.shape
+
+        # Get the number of possible output labels.
+        num_label_types = layers[-1]
+
+        # Initialize big delta - aggregated delta values for all training examples that will
+        # indicate how exact theta need to be changed.
+        deltas = {}
+        for layer_index in range(num_layers - 1):
+            in_count = layers[layer_index]
+            out_count = layers[layer_index + 1]
+            deltas[layer_index] = np.zeros((out_count, in_count + 1))
+
+        # Let's go through all examples.
+        for example_index in range(num_examples):
+            # We will store layers inputs and activations in order to re-use it later.
+            layers_inputs = {}
+            layers_activations = {}
+
+            # Setup input layer activations.
+            layer_activation = data[example_index, :].reshape((num_features, 1))
+            layers_activations[0] = layer_activation
+
+            # Perform a feedforward pass for current training example.
+            for layer_index in range(num_layers - 1):
+                layer_theta = thetas[layer_index]
+                layer_input = layer_theta @ layer_activation
+                layer_activation = np.vstack((np.array([[1]]), sigmoid(layer_input)))
+
+                layers_inputs[layer_index + 1] = layer_input
+                layers_activations[layer_index + 1] = layer_activation
+
+            # Remove bias units from the output activations.
+            output_layer_activation = layer_activation[1:, :]
+
+            # Calculate deltas.
+
+            # For input layer we don't calculate delta because we do not
+            # associate error with the input.
+            delta = {}
+
+            # Convert the output from number to vector (i.e. 5 to [0; 0; 0; 0; 1; 0; 0; 0; 0; 0])
+            bitwise_label = np.zeros((num_label_types, 1))
+            bitwise_label[labels[example_index][0]] = 1
+
+            # Calculate deltas for the output layer for current training example.
+            delta[num_layers - 1] = output_layer_activation - bitwise_label
+
+            # Calculate small deltas for hidden layers for current training example.
+            # The loops should go for the layers L, L-1, ..., 1.
+            for layer_index in range(num_layers - 2, 0, -1):
+                layer_theta = thetas[layer_index]
+                next_delta = delta[layer_index + 1]
+                layer_input = layers_inputs[layer_index]
+
+                # Add bias row to the layer input.
+                layer_input = np.vstack((np.array([[1]]), layer_input))
+
+                # Calculate row delta and take off the bias row from it.
+                delta[layer_index] = (layer_theta.T @ next_delta) * sigmoid_gradient(layer_input)
+                delta[layer_index] = delta[layer_index][1:, :]
+
+            # Accumulate the gradient (update big deltas).
+            for layer_index in range(num_layers - 1):
+                layer_delta = delta[layer_index + 1] @ layers_activations[layer_index].T
+                deltas[layer_index] = deltas[layer_index] + layer_delta
+
+        # Obtain un-regularized gradient for the neural network cost function.
+        for layer_index in range(num_layers - 1):
+            # Remember that we should NOT be regularizing the first column of theta.
+            current_delta = deltas[layer_index]
+            current_delta = np.hstack((np.zeros((current_delta.shape[0], 1)), current_delta[:, 1:]))
+
+            # Calculate regularization.
+            regularization = (regularization_param / num_examples) * current_delta
+
+            # Regularize deltas.
+            deltas[layer_index] = (1 / num_examples) * deltas[layer_index] + regularization
+
+        return deltas
 
     @staticmethod
     def thetas_init(layers, epsilon):
@@ -208,9 +301,9 @@ class MultilayerPerceptron:
         # Generate Thetas only for input and hidden layers.
         # There is no need to generate Thetas for the output layer.
         for layer_index in range(num_layers - 1):
-            layers_in = layers[layer_index]
-            layers_out = layers[layer_index + 1]
-            thetas[layer_index] = np.random.rand(layers_out, layers_in + 1) * 2 * epsilon - epsilon
+            in_count = layers[layer_index]
+            out_count = layers[layer_index + 1]
+            thetas[layer_index] = np.random.rand(out_count, in_count + 1) * 2 * epsilon - epsilon
 
         return thetas
 
@@ -238,11 +331,11 @@ class MultilayerPerceptron:
         unrolled_shift = 0
 
         for layer_index in range(num_layers - 1):
-            layers_in = layers[layer_index]
-            layers_out = layers[layer_index + 1]
+            in_count = layers[layer_index]
+            out_count = layers[layer_index + 1]
 
-            thetas_width = layers_in + 1  # We need to remember about bias unit.
-            thetas_height = layers_out
+            thetas_width = in_count + 1  # We need to remember about bias unit.
+            thetas_height = out_count
             thetas_volume = thetas_width * thetas_height
 
             # We need to remember about bias units when rolling up params.
