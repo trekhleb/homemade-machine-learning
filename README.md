@@ -53,7 +53,7 @@ _Usage examples: market segmentation, social networks analysis, organize computi
 #### 🤖 K-means Algorithm
 
 - 📗 [Math | K-means Algorithm](homemade/k_means) - theory and links for further readings
-- ⚙️ [Code | K-means Algorithm](https://github.com/trekhleb/homemade-machine-learning/blob/master/homemade/k_means/k_means.py) - implementation example
+- ⚙️ [Code | K-means Algorithm](homemade/k_means/k_means.py) - implementation example
 - ▶️ [Demo | K-means Algorithm](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/k_means/k_means_demo.ipynb) - split Iris flowers into clusters based on `petal_length` and `petal_width`
 
 ### Anomaly Detection
