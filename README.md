@@ -77,7 +77,7 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 #### 🤖 Multilayer Perceptron (MLP)
 
 - 📗 [Math | Multilayer Perceptron](homemade/neural_network) - theory and links for further readings
-- ⚙️ [Code | Multilayer Perceptron](https://github.com/trekhleb/homemade-machine-learning/blob/master/homemade/neural_network/multilayer_perceptron.py) - implementation example
+- ⚙️ [Code | Multilayer Perceptron](homemade/neural_network/multilayer_perceptron.py) - implementation example
 - ▶️ [Demo | Multilayer Perceptron](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/neural_network/multilayer_perceptron_demo.ipynb) - recognize handwritten digits from `28x28` pixel images.
 
 ## Machine Learning Map
