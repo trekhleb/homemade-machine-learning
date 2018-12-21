@@ -1,5 +1,11 @@
 # K-Means Algorithm
 
+## Jupyter Demos
+
+▶️ [Demo | K-means Algorithm](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/k_means/k_means_demo.ipynb) - split Iris flowers into clusters based on `petal_length` and `petal_width`
+
+## Definition
+
 **K-means clustering** aims to partition n observations into _K_ clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster.
 
 The result of a cluster analysis shown below as the coloring of the squares into three clusters.
