@@ -28,14 +28,6 @@ _Source: [ics.uci.edu](http://archive.ics.uci.edu/ml/datasets/Iris)_
 
 Iris data set data set consists of several samples from each of three species of Iris (`Iris setosa`, `Iris virginica` and `Iris versicolor`). Four features were measured from each sample: the length and the width of the sepals and petals, in centimeters.
 
-### NYC Taxi
-
-> [nyc_taxi.csv](nyc_taxi.csv)
-
-_Source: [Kaggle](https://www.kaggle.com/boltzmannbrain/nab)_
-
-Number of NYC taxi passengers, where the five anomalies occur during the NYC marathon, Thanksgiving, Christmas, New Years day, and a snow storm. The raw data is from the [NYC Taxi and Limousine Commission](http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml). The data file included here consists of aggregating the total number of taxi passengers into 30 minute buckets.
-
 ### Microchips Tests (Artificial)
 
 > [microchips-tests.csv](microchips-tests.csv)
@@ -51,3 +43,11 @@ Artificial dataset in which `param_1` and `param_2` produce non-linear decision 
 _Source: [Machine Learning at Coursera](https://www.coursera.org/learn/machine-learning)_
 
 Artificial dataset that contains non-linear y(x) dependency.
+
+### Server Operational Parameters
+
+> [server-operational-params.csv](server-operational-params.csv)
+
+_Source: [Machine Learning at Coursera](https://www.coursera.org/learn/machine-learning)_
+
+Dataset of server operational parameters containing the `Latency(Throughput)` dependency. 
