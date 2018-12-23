@@ -66,7 +66,7 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 
 - 📗 [Math | Anomaly Detection using Gaussian Distribution](homemade/anomaly_detection) - theory and links for further readings
 - ⚙️ [Code | Anomaly Detection using Gaussian Distribution](homemade/anomaly_detection/gaussian_anomaly_detection.py) - implementation example
-- ▶️ Demo | Anomaly Detection
+- ▶️ [Demo | Anomaly Detection](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/anomaly_detection/anomaly_detection_gaussian_demo.ipynb) - find anomalies in server operational parameters like `latency` and `threshold`
 
 ## Neural Network (NN)
 
