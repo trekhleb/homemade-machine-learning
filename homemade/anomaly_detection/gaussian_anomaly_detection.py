@@ -1,3 +1,5 @@
+"""Anomaly Detection Module"""
+
 import numpy as np
 import math
 
@@ -81,25 +83,25 @@ class GaussianAnomalyDetection:
 
             # The number of false positives: the ground truth label says it’s not
             # an anomaly, but our algorithm incorrectly classified it as an anomaly.
-            fp = np.sum((predictions == 1) & (labels == 0))
+            false_positives = np.sum((predictions == 1) & (labels == 0))
 
             # The number of false negatives: the ground truth label says it’s an anomaly,
             # but our algorithm incorrectly classified it as not being anomalous.
-            fn = np.sum((predictions == 0) & (labels == 1))
+            false_negatives = np.sum((predictions == 0) & (labels == 1))
 
             # The number of true positives: the ground truth label says it’s an
             # anomaly and our algorithm correctly classified it as an anomaly.
-            tp = np.sum((predictions == 1) & (labels == 1))
+            true_positives = np.sum((predictions == 1) & (labels == 1))
 
             # Prevent division by zero.
-            if (tp + fp) == 0 or (tp + fn) == 0:
+            if (true_positives + false_positives) == 0 or (true_positives + false_negatives) == 0:
                 continue
 
             # Precision.
-            precision = tp / (tp + fp)
+            precision = true_positives / (true_positives + false_positives)
 
             # Recall.
-            recall = tp / (tp + fn)
+            recall = true_positives / (true_positives + false_negatives)
 
             # F1.
             f1 = 2 * precision * recall / (precision + recall)

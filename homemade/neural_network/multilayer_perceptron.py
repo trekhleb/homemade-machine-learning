@@ -1,3 +1,5 @@
+"""Neural Network Module"""
+
 import numpy as np
 from ..utils.features import prepare_for_training
 from ..utils.hypothesis import sigmoid, sigmoid_gradient
@@ -29,6 +31,8 @@ class MultilayerPerceptron:
         self.thetas = MultilayerPerceptron.thetas_init(layers, epsilon)
 
     def train(self, regularization_param=0, max_iterations=1000, alpha=1):
+        """Train the model"""
+
         # Flatten model thetas for gradient descent.
         unrolled_thetas = MultilayerPerceptron.thetas_unroll(self.thetas)
 
@@ -65,7 +69,7 @@ class MultilayerPerceptron:
 
     @staticmethod
     def gradient_descent(
-        data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
+            data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
     ):
         """Gradient descent function.
 
@@ -187,6 +191,8 @@ class MultilayerPerceptron:
 
     @staticmethod
     def feedforward_propagation(data, thetas, layers):
+        """Feedforward propagation function"""
+
         # Calculate the total number of layers.
         num_layers = len(layers)
 

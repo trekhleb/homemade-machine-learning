@@ -1,3 +1,5 @@
+"""Logistic Regression Module"""
+
 import numpy as np
 from scipy.optimize import minimize
 from ..utils.features import prepare_for_training
@@ -75,6 +77,8 @@ class LogisticRegression:
         return self.thetas, cost_histories
 
     def predict(self, data):
+        """Prediction function"""
+
         num_examples = data.shape[0]
 
         data_processed = prepare_for_training(

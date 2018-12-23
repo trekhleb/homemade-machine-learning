@@ -1,3 +1,5 @@
+"""KMeans Module"""
+
 import numpy as np
 
 
