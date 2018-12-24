@@ -8,6 +8,7 @@ from ..utils.hypothesis import sigmoid, sigmoid_gradient
 class MultilayerPerceptron:
     """Multilayer Perceptron Class"""
 
+    # pylint: disable=R0913
     def __init__(self, data, labels, layers, epsilon, normalize_data=False):
         """Multilayer perceptron constructor.
 
@@ -71,6 +72,7 @@ class MultilayerPerceptron:
     def gradient_descent(
             data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
     ):
+        # pylint: disable=R0913
         """Gradient descent function.
 
         Iteratively optimizes theta model parameters.
@@ -138,6 +140,7 @@ class MultilayerPerceptron:
 
         return thetas_unrolled_gradients
 
+    # pylint: disable=R0914
     @staticmethod
     def cost_function(data, labels, thetas, layers, regularization_param):
         """Cost function.
@@ -213,6 +216,7 @@ class MultilayerPerceptron:
         # Output layer should not contain bias units.
         return in_layer_activation[:, 1:]
 
+    # pylint: disable=R0914
     @staticmethod
     def back_propagation(data, labels, thetas, layers, regularization_param):
         """Backpropagation function"""

@@ -62,6 +62,7 @@ class GaussianAnomalyDetection:
 
     @staticmethod
     def select_threshold(labels, probabilities):
+        # pylint: disable=R0914
         """Finds the best threshold (epsilon) to use for selecting outliers"""
 
         best_epsilon = 0

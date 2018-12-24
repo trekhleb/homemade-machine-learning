@@ -7,9 +7,11 @@ from ..utils.hypothesis import sigmoid
 
 
 class LogisticRegression:
+    # pylint: disable=R0902
     """Logistic Regression Class"""
 
     def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0, normalize_data=False):
+        # pylint: disable=R0913
         """Logistic regression constructor.
 
         :param data: training set.
