@@ -12,6 +12,18 @@ A sample of original MNIST dataset in a CSV format. Instead of using full datase
 
 Each row in the dataset consists of 785 values: the first value is the label (a number from 0 to 9) and the remaining 784 values (28x28 pixels image) are the pixel values (a number from 0 to 255).
 
+### Fashion MNIST
+
+> [fashion-mnist-demo.csv](fashion-mnist-demo.csv)
+
+_Source: [Kaggle](https://www.kaggle.com/zalando-research/fashionmnist)_
+
+Fashion-MNIST is a dataset of Zalando's article images—consisting of a training set. Each example is a 28x28 grayscale image, associated with a label from 10 classes. Zalando intends Fashion-MNIST to serve as a direct drop-in replacement for the original MNIST dataset for benchmarking machine learning algorithms. It shares the same image size and structure of training and testing splits.
+
+The original MNIST dataset contains a lot of handwritten digits. Members of the AI/ML/Data Science community love this dataset and use it as a benchmark to validate their algorithms.
+ 
+ Instead of using full dataset with 60000 training examples we will use cut dataset of just 5000 examples that we will also split into training and testing sets.
+
 ### World Happiness Report 2017
 
 > [world-happiness-report-2017.csv](world-happiness-report-2017.csv)
