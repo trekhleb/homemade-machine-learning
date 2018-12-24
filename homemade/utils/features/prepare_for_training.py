@@ -1,5 +1,7 @@
-import numpy as np
+"""Prepares the dataset for training"""
+
 import math
+import numpy as np
 from .normalize import normalize
 from .add_sinusoids import add_sinusoids
 from .add_polynomials import add_polynomials
@@ -9,7 +11,7 @@ def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0, normalize
     """Prepares data set for training on prediction"""
 
     # Calculate the number of examples.
-    (num_examples, num_features) = data.shape
+    num_examples = data.shape[0]
 
     # Prevent original data from being modified.
     data_processed = np.copy(data)
@@ -34,7 +36,10 @@ def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0, normalize
         middle_feature_index = math.floor(current_features_num / 2)
 
         # Split features on halves.
-        (first_half, second_half) = np.split(data_processed, [middle_feature_index], axis=1)
+        features_split = np.split(data_processed, [middle_feature_index], axis=1)
+        first_half = features_split[0]
+        second_half = features_split[1]
+
         # Generate polynomials.
         data_processed = add_polynomials(first_half, second_half, polynomial_degree)
 

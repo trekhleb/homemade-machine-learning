@@ -29,7 +29,7 @@ class KMeans:
         closest_centroids_ids = np.empty((num_examples, 1))
 
         # Run K-Means.
-        for iteration_index in range(max_iterations):
+        for _ in range(max_iterations):
             # Find the closest centroids for training examples.
             closest_centroids_ids = KMeans.centroids_find_closest(self.data, centroids)
 
@@ -108,8 +108,8 @@ class KMeans:
         :param num_clusters: number of clusters.
         """
 
-        # Get number of training examples and features.
-        (num_examples, num_features) = data.shape
+        # Get number of features.
+        num_features = data.shape[1]
 
         # We need to return the following variables correctly.
         centroids = np.zeros((num_clusters, num_features))

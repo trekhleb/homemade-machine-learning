@@ -1,7 +1,7 @@
 """Anomaly Detection Module"""
 
-import numpy as np
 import math
+import numpy as np
 
 
 class GaussianAnomalyDetection:
@@ -11,7 +11,7 @@ class GaussianAnomalyDetection:
         """GaussianAnomalyDetection constructor"""
 
         # Estimate Gaussian distribution.
-        (self.mu, self.sigma_squared) = GaussianAnomalyDetection.estimate_gaussian(data)
+        (self.mu_param, self.sigma_squared) = GaussianAnomalyDetection.estimate_gaussian(data)
 
         # Save training data.
         self.data = data
@@ -19,7 +19,7 @@ class GaussianAnomalyDetection:
     def multivariate_gaussian(self, data):
         """Computes the probability density function of the multivariate gaussian distribution"""
 
-        mu = self.mu
+        mu_param = self.mu_param
         sigma_squared = self.sigma_squared
 
         # Get number of training sets and features.
@@ -32,9 +32,9 @@ class GaussianAnomalyDetection:
         for example_index in range(num_examples):
             for feature_index in range(num_features):
                 # Calculate the power of e.
-                e_power_dividend = (data[example_index, feature_index] - mu[feature_index]) ** 2
-                e_power_divider = 2 * sigma_squared[feature_index]
-                e_power = -1 * e_power_dividend / e_power_divider
+                power_dividend = (data[example_index, feature_index] - mu_param[feature_index]) ** 2
+                power_divider = 2 * sigma_squared[feature_index]
+                e_power = -1 * power_dividend / power_divider
 
                 # Calculate the prefix multiplier.
                 probability_prefix = 1 / math.sqrt(2 * math.pi * sigma_squared[feature_index])
@@ -51,14 +51,14 @@ class GaussianAnomalyDetection:
         """This function estimates the parameters of a Gaussian distribution using the data in X."""
 
         # Get number of features and number of examples.
-        (num_examples, num_features) = data.shape
+        num_examples = data.shape[0]
 
         # Estimate Gaussian parameters mu and sigma_squared for every feature.
-        mu = (1 / num_examples) * np.sum(data, axis=0)
-        sigma_squared = (1 / num_examples) * np.sum((data - mu) ** 2, axis=0)
+        mu_param = (1 / num_examples) * np.sum(data, axis=0)
+        sigma_squared = (1 / num_examples) * np.sum((data - mu_param) ** 2, axis=0)
 
         # Return Gaussian parameters.
-        return mu, sigma_squared
+        return mu_param, sigma_squared
 
     @staticmethod
     def select_threshold(labels, probabilities):
@@ -104,15 +104,15 @@ class GaussianAnomalyDetection:
             recall = true_positives / (true_positives + false_negatives)
 
             # F1.
-            f1 = 2 * precision * recall / (precision + recall)
+            f1_score = 2 * precision * recall / (precision + recall)
 
             # Save history data.
             precision_history.append(precision)
             recall_history.append(recall)
-            f1_history.append(f1)
+            f1_history.append(f1_score)
 
-            if f1 > best_f1:
+            if f1_score > best_f1:
                 best_epsilon = epsilon
-                best_f1 = f1
+                best_f1 = f1_score
 
         return best_epsilon, best_f1, precision_history, recall_history, f1_history

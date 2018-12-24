@@ -1,7 +1,9 @@
+"""Sigmoid gradient function"""
+
 from .sigmoid import sigmoid
 
 
-def sigmoid_gradient(z):
+def sigmoid_gradient(matrix):
     """Computes the gradient of the sigmoid function evaluated at z."""
 
-    return sigmoid(z) * (1 - sigmoid(z))
+    return sigmoid(matrix) * (1 - sigmoid(matrix))

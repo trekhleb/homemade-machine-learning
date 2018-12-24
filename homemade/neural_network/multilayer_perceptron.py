@@ -89,7 +89,7 @@ class MultilayerPerceptron:
         # Initialize cost history list.
         cost_history = []
 
-        for iteration_index in range(max_iteration):
+        for _ in range(max_iteration):
             # Get current cost.
             cost = MultilayerPerceptron.cost_function(
                 data,

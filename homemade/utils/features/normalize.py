@@ -1,3 +1,5 @@
+"""Normalize features"""
+
 import numpy as np
 
 
