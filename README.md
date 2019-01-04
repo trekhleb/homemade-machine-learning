@@ -110,7 +110,7 @@ pip install -r requirements.txt
 
 #### Launching Jupyter Locally
 
-All demos in the project may be run directly in your browser without installing Jupyter locally. But if you want to launch [Jupyter Notebook](http://jupyter.org/) locally you may do it be running the following command from the root folder of the project:
+All demos in the project may be run directly in your browser without installing Jupyter locally. But if you want to launch [Jupyter Notebook](http://jupyter.org/) locally you may do it by running the following command from the root folder of the project:
 
 ```bash
 jupyter notebook
