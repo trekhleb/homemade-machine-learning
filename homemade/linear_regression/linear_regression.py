@@ -1,4 +1,4 @@
-"""Linear Regression Module"""
+#Linear Regression Module
 
 # Import dependencies.
 import numpy as np
@@ -6,7 +6,7 @@ from ..utils.features import prepare_for_training
 
 
 class LinearRegression:
-    """Linear Regression Class"""
+    #Linear Regression Class
 
     def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0):
         """Linear regression constructor.
