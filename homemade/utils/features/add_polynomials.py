@@ -16,9 +16,20 @@ def add_polynomials(dataset_1, dataset_2, polynomial_degree):
 
     polynomials = np.empty((dataset_1.shape[0], 0))
 
-    for i in range(1, polynomial_degree + 1):
-        for j in range(i + 1):
-            polynomial_feature = (dataset_1 ** (i - j)) * (dataset_2 ** j)
+    if dataset_1.shape[1] == 0:
+        for i in range(1, polynomial_degree + 1):
+
+            polynomial_feature = (dataset_2 ** i)
             polynomials = np.concatenate((polynomials, polynomial_feature), axis=1)
+    elif dataset_2.shape[1]==0:
+        for i in range(1, polynomial_degree + 1):
+
+            polynomial_feature = (dataset_1 ** i)
+            polynomials = np.concatenate((polynomials, polynomial_feature), axis=1)
+    else:
+        for i in range(1, polynomial_degree + 1):
+            for j in range(i + 1):
+                polynomial_feature = (dataset_1 ** (i - j)) * (dataset_2 ** j)
+                polynomials = np.concatenate((polynomials, polynomial_feature), axis=1)
 
     return polynomials
