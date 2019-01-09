@@ -20,7 +20,17 @@ _Source: [Kaggle](https://www.kaggle.com/zalando-research/fashionmnist)_
 
 Fashion-MNIST is a dataset of Zalando's article images—consisting of a training set. Each example is a 28x28 grayscale image, associated with a label from 10 classes. Zalando intends Fashion-MNIST to serve as a direct drop-in replacement for the original MNIST dataset for benchmarking machine learning algorithms. It shares the same image size and structure of training and testing splits.
  
- Instead of using full dataset with 60000 training examples we will use cut dataset of just 5000 examples that we will also split into training and testing sets.
+ Instead of using full dataset with 60000 training examples we will use cut dataset of just 5000 examples that we will also split into training and testing sets.  
+
+ ### Face Verification and Recognition
+
+> [Images and Name of People](../../images/face_rexognition)
+
+_Source: [Deep Learning at Coursera](https://www.coursera.org/specializations/deep-learning)_
+
+This dataset is collected from coursera course deeplearning.ai. The dataset contains images of people for training the model. Also, it contains the images for testing. 
+ 
+There is another dataset of 800 Images located in this directory named as `train_happy.h5` and `test_happy.h5`.
 
 ### World Happiness Report 2017
 

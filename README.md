@@ -83,6 +83,13 @@ _Usage examples: as a substitute of all other algorithms in general, image recog
 - ▶️ [Demo | Multilayer Perceptron | MNIST](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/neural_network/multilayer_perceptron_demo.ipynb) - recognize handwritten digits from `28x28` pixel images
 - ▶️ [Demo | Multilayer Perceptron | Fashion MNIST](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/neural_network/multilayer_perceptron_fashion_demo.ipynb) - recognize the type of clothes from `28x28` pixel images
 
+#### 🤖 Face Verification and Recognition  
+
+- 📗 [Math | Face Recognition](homemade/face_recognition) - Detailed theory for explanation and links to read further.
+- ⚙️ [Code | Face Recognition](homemade/face_recognition/inception_blocks_v2.py) - Implementation example  
+- ▶️ [Demo | Face Recognition](https://nbviewer.jupyter.org/github/ashutosh1919/homemade-machine-learning/blob/master/notebooks/face_recognition/Face_Recognition.ipynb)- Recognize the person's name by his/her image if that person images are trained before.  
+
+
 ## Machine Learning Map
 
 ![Machine Learning Map](images/machine-learning-map.png)
