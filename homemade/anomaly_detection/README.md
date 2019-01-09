@@ -106,4 +106,5 @@ _fn_ - number of false negatives.
 - [Machine Learning on Coursera](https://www.coursera.org/learn/machine-learning)
 - [Normal Distribution on Wikipedia](https://en.wikipedia.org/wiki/Normal_distribution)
 - [F1 Score on Wikipedia](https://en.wikipedia.org/wiki/F1_score)
+- [Precision and Recall on Wikipedia](https://en.wikipedia.org/wiki/Precision_and_recall)
   
