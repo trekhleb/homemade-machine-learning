@@ -24,15 +24,15 @@ class LogisticRegression:
         # Normalize features and add ones column.
         (
             data_processed,
-            features_mean,
-            features_deviation
+            mean,
+            deviation
         ) = prepare_for_training(data, polynomial_degree, sinusoid_degree, normalize_data)
 
         self.data = data_processed
         self.labels = labels
         self.unique_labels = np.unique(labels)
-        self.features_mean = features_mean
-        self.features_deviation = features_deviation
+        self.features_mean = mean
+        self.features_deviation = deviation
         self.polynomial_degree = polynomial_degree
         self.sinusoid_degree = sinusoid_degree
         self.normalize_data = normalize_data
