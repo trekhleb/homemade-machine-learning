@@ -102,7 +102,7 @@ class LinearRegression:
         # Vectorized version of gradient descent.
         theta = theta * reg_param - alpha * (1 / num_examples) * (delta.T @ self.data).T
         # We should NOT regularize the parameter theta_zero.
-        theta[1] = theta[1] - alpha * (1 / num_examples) * (self.data[:, 0].T @ delta).T
+        theta[0] = theta[0] - alpha * (1 / num_examples) * (self.data[:, 0].T @ delta).T
 
         self.theta = theta
 
