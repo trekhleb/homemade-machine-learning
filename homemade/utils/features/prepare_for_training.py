@@ -1,10 +1,9 @@
 """Prepares the dataset for training"""
 
-import math
 import numpy as np
 from .normalize import normalize
-from .add_sinusoids import add_sinusoids
-from .add_polynomials import add_polynomials
+from .generate_sinusoids import generate_sinusoids
+from .generate_polynomials import generate_polynomials
 
 
 def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0, normalize_data=True):
@@ -19,29 +18,27 @@ def prepare_for_training(data, polynomial_degree=0, sinusoid_degree=0, normalize
     # Normalize data set.
     features_mean = 0
     features_deviation = 0
+    data_normalized = data_processed
     if normalize_data:
         (
-            data_processed,
+            data_normalized,
             features_mean,
             features_deviation
         ) = normalize(data_processed)
 
+        # Replace processed data with normalized processed data.
+        # We need to have normalized data below while we will adding polynomials and sinusoids.
+        data_processed = data_normalized
+
     # Add sinusoidal features to the dataset.
-    if sinusoid_degree:
-        data_processed = add_sinusoids(data_processed, sinusoid_degree)
+    if sinusoid_degree > 0:
+        sinusoids = generate_sinusoids(data_normalized, sinusoid_degree)
+        data_processed = np.concatenate((data_processed, sinusoids), axis=1)
 
     # Add polynomial features to data set.
-    if polynomial_degree >= 2:
-        current_features_num = data_processed.shape[1]
-        middle_feature_index = math.floor(current_features_num / 2)
-
-        # Split features on halves.
-        features_split = np.split(data_processed, [middle_feature_index], axis=1)
-        first_half = features_split[0]
-        second_half = features_split[1]
-
-        # Generate polynomials.
-        data_processed = add_polynomials(first_half, second_half, polynomial_degree)
+    if polynomial_degree > 0:
+        polynomials = generate_polynomials(data_normalized, polynomial_degree, normalize_data)
+        data_processed = np.concatenate((data_processed, polynomials), axis=1)
 
     # Add a column of ones to X.
     data_processed = np.hstack((np.ones((num_examples, 1)), data_processed))

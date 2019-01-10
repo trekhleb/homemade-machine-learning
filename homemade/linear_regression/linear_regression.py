@@ -6,15 +6,18 @@ from ..utils.features import prepare_for_training
 
 
 class LinearRegression:
+    # pylint: disable=too-many-instance-attributes
     """Linear Regression Class"""
 
-    def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0):
+    def __init__(self, data, labels, polynomial_degree=0, sinusoid_degree=0, normalize_data=True):
+        # pylint: disable=too-many-arguments
         """Linear regression constructor.
 
         :param data: training set.
         :param labels: training set outputs (correct values).
         :param polynomial_degree: degree of additional polynomial features.
         :param sinusoid_degree: multipliers for sinusoidal features.
+        :param normalize_data: flag that indicates that features should be normalized.
         """
 
         # Normalize features and add ones column.
@@ -22,7 +25,7 @@ class LinearRegression:
             data_processed,
             features_mean,
             features_deviation
-        ) = prepare_for_training(data, polynomial_degree, sinusoid_degree)
+        ) = prepare_for_training(data, polynomial_degree, sinusoid_degree, normalize_data)
 
         self.data = data_processed
         self.labels = labels
@@ -30,6 +33,7 @@ class LinearRegression:
         self.features_deviation = features_deviation
         self.polynomial_degree = polynomial_degree
         self.sinusoid_degree = sinusoid_degree
+        self.normalize_data = normalize_data
 
         # Initialize model parameters.
         num_features = self.data.shape[1]
@@ -113,7 +117,8 @@ class LinearRegression:
         data_processed = prepare_for_training(
             data,
             self.polynomial_degree,
-            self.sinusoid_degree
+            self.sinusoid_degree,
+            self.normalize_data,
         )[0]
 
         return self.cost_function(data_processed, labels, lambda_param)
@@ -155,7 +160,8 @@ class LinearRegression:
         data_processed = prepare_for_training(
             data,
             self.polynomial_degree,
-            self.sinusoid_degree
+            self.sinusoid_degree,
+            self.normalize_data,
         )[0]
 
         # Do predictions using model hypothesis.
