@@ -8,7 +8,7 @@ from ..utils.hypothesis import sigmoid, sigmoid_gradient
 class MultilayerPerceptron:
     """Multilayer Perceptron Class"""
 
-    # pylint: disable=R0913
+    # pylint: disable=too-many-arguments
     def __init__(self, data, labels, layers, epsilon, normalize_data=False):
         """Multilayer perceptron constructor.
 
@@ -72,7 +72,7 @@ class MultilayerPerceptron:
     def gradient_descent(
             data, labels, unrolled_theta, layers, regularization_param, max_iteration, alpha
     ):
-        # pylint: disable=R0913
+        # pylint: disable=too-many-arguments
         """Gradient descent function.
 
         Iteratively optimizes theta model parameters.
