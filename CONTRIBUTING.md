@@ -17,3 +17,5 @@
     - **Source code** with comments and readable namings
     - **Math** being explained in README.md along with the code
     - **Jupyter demo notebook** with example of how this new algorithm may be applied
+
+If you're adding new **datasets** they need to be saved in the `/data` folder. CSV files are preferable. The size of the file should not be greater than `30Mb`.
