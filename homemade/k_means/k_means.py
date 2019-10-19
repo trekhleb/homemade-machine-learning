@@ -83,10 +83,13 @@ class KMeans:
         # We need to return the following variables correctly.
         closest_centroids_ids = np.zeros((num_examples, 1))
 
-        # Go over every example, find its closest centroid, and store
-        # the index inside closest_centroids_ids at the appropriate location.
-        # Concretely, closest_centroids_ids(i) should contain the index of the centroid
-        # closest to example i. Hence, it should be a value in the range 1...num_centroids.
+        """
+        Go over every example, find its closest centroid, and store
+        the index inside closest_centroids_ids at the appropriate location.
+        Concretely, closest_centroids_ids(i) should contain the index of the centroid
+        closest to example i. Hence, it should be a value in the range 1...num_centroids.
+        """
+
         for example_index in range(num_examples):
             distances = np.zeros((num_centroids, 1))
             for centroid_index in range(num_centroids):
