@@ -128,3 +128,7 @@ Each algorithm section contains demo links to [Jupyter NBViewer](http://nbviewer
 ## Datasets
 
 The list of datasets that is being used for Jupyter Notebook demos may be found in [data folder](data).
+
+## Supporting the project
+
+You may support this project via ❤️️ [GitHub](https://github.com/sponsors/trekhleb) or ❤️️ [Patreon](https://www.patreon.com/trekhleb).
