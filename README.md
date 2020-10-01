@@ -17,7 +17,7 @@ In supervised learning we have a set of training data as an input and a set of l
 
 ### Regression
 
-In regression problems we do real value predictions. Basically we try to draw a line/plane/n-dimensional plane along the training examples.
+In regression problems we do real value predictions. Basically we try to draw a line/plane/n-dimensional plane along the training examples. Regression has continuous output value as compared to classification which has discrete output values
 
 _Usage examples: stock price forecast, sales analysis, dependency of any number, etc._
 
