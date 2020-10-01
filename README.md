@@ -11,6 +11,10 @@ _For Octave/MatLab version of this repository please check [machine-learning-oct
 
 The purpose of this repository is _not_ to implement machine learning algorithms by using 3<sup>rd</sup> party library one-liners _but_ rather to practice implementing these algorithms from scratch and get better understanding of the mathematics behind each algorithm. That's why all algorithms implementations are called "homemade" and not intended to be used for production.
 
+## For beginner's Learning
+
+[Download the Machine Learning Learning Material](https://drive.google.com/file/d/1nIfronvk1Izdk9OUIXMMHwYmy69_n-eS/view?usp=sharing)
+
 ## Supervised Learning
 
 In supervised learning we have a set of training data as an input and a set of labels or "correct answers" for each training set as an output. Then we're training our model (machine learning algorithm parameters) to map the input to the output correctly (to do correct prediction). The ultimate purpose is to find such model parameters that will successfully continue correct _input→output_ mapping (predictions) even for new input examples.
