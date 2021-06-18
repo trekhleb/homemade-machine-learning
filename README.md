@@ -22,6 +22,16 @@ In regression problems we do real value predictions. Basically we try to draw a 
 _Usage examples: stock price forecast, sales analysis, dependency of any number, etc._
 
 #### 🤖 Linear Regression
+Linear Regression is one of the most fundamental and widely known Machine Learning Algorithms which people start with. Building blocks of a Linear Regression Model are:
+
+Discreet/continuous independent variables
+
+A best-fit regression line
+
+Continuous dependent variable. i.e., A Linear Regression model predicts the dependent variable using a regression line based on the independent variables. The equation of the Linear Regression is:
+
+                                          Y=a+b*X + e 
+Where, a is the intercept, b is the slope of the line, and e is the error term. The equation above is used to predict the value of the target variable based on the given predictor variable(s).
 
 - 📗 [Math | Linear Regression](homemade/linear_regression) - theory and links for further readings
 - ⚙️ [Code | Linear Regression](homemade/linear_regression/linear_regression.py) - implementation example
@@ -36,6 +46,15 @@ In classification problems we split input examples by certain characteristic.
 _Usage examples: spam-filters, language detection, finding similar documents, handwritten letters recognition, etc._
 
 #### 🤖 Logistic Regression
+Logistic regression is one such regression algorithm which can be used for performing classification problems. It calculates the probability that a given value belongs to a specific class. If the probability is more than 50%, it assigns the value in that particular class else if the probability is less than 50%, the value is assigned to the other class. Therefore, we can say that logistic regression acts as a binary classifier.
+
+Working of a Logistic Model
+For linear regression, the model is defined by:  
+                       𝑦=𝛽0+𝛽1𝑥  - (i)
+
+and for logistic regression, we calculate probability, i.e. y is the probability of a given variable x belonging to a certain class. Thus, it is obvious that the value of y should lie between 0 and 1.
+
+But, when we use equation(i) to calculate probability, we would get values less than 0 as well as greater than 1. That doesn’t make any sense . So, we need to use such an equation which always gives values between 0 and 1, as we desire while calculating the probability.
 
 - 📗 [Math | Logistic Regression](homemade/logistic_regression) - theory and links for further readings
 - ⚙️ [Code | Logistic Regression](homemade/logistic_regression/logistic_regression.py) - implementation example
@@ -55,6 +74,9 @@ In clustering problems we split the training examples by unknown characteristics
 _Usage examples: market segmentation, social networks analysis, organize computing clusters, astronomical data analysis, image compression, etc._
 
 #### 🤖 K-means Algorithm
+K-nearest neighbors (KNN) is a type of supervised learning algorithm which is used for both regression and classification purposes, but mostly it is used for the later. Given a dataset with different classes, KNN tries to predict the correct class of test data by calculating the distance between the test data and all the training points. 
+It then selects the k points which are closest to the test data. Once the points are selected, the algorithm calculates the probability (in case of classification) of the test point belonging to the classes of the k training points and the class with the highest probability is selected. 
+In the case of a regression problem, the predicted value is the mean of the k selected training points.
 
 - 📗 [Math | K-means Algorithm](homemade/k_means) - theory and links for further readings
 - ⚙️ [Code | K-means Algorithm](homemade/k_means/k_means.py) - implementation example
