@@ -139,3 +139,7 @@ The list of datasets that is being used for Jupyter Notebook demos may be found 
 ## Supporting the project
 
 You may support this project via ❤️️ [GitHub](https://github.com/sponsors/trekhleb) or ❤️️ [Patreon](https://www.patreon.com/trekhleb).
+
+## Author
+
+- [@trekhleb](https://trekhleb.dev)
