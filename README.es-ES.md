@@ -8,7 +8,6 @@
 <hr/>
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/trekhleb/homemade-machine-learning/master?filepath=notebooks)
-[![Build Status](https://travis-ci.org/trekhleb/homemade-machine-learning.svg?branch=master)](https://travis-ci.org/trekhleb/homemade-machine-learning)
 
 > _También te podría interesar 🤖 [Interactive Machine Learning Experiments](https://github.com/trekhleb/machine-learning-experiments)_
 
