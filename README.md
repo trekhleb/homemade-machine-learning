@@ -27,9 +27,9 @@ In supervised learning we have a set of training data as an input and a set of l
 
 ### Regression
 
-In regression problems we do real value predictions. Basically we try to draw a line/plane/n-dimensional plane along the training examples.
+In regression problems we predict real/continuos values which are countably infinite. Basically we try to draw a line/plane/n-dimensional plane along the training examples.
 
-_Usage examples: stock price forecast, sales analysis, dependency of any number, etc._
+_Usage examples: stock price forecast, sales analysis, dependency of any number, House price, Market Sales, Heart rate, etc._
 
 #### 🤖 Linear Regression
 
@@ -41,9 +41,14 @@ _Usage examples: stock price forecast, sales analysis, dependency of any number,
 
 ### Classification
 
-In classification problems we split input examples by certain characteristic.
+In classification problem the output variable (feature) is **categorical**, For example: Covid or No Covid, Spam or Not Spam.
+There are many types of classification problems such as:
+- Binary Classification - Binary classification refers to those classification tasks that have two class labels. 
+- Multi-Class Classification - Multi-class classification refers to those classification tasks that have more than two class labels.
+- Multi-Label Classification - Multi-label classification refers to those classification tasks that have two or more class labels, where one or more class labels may be predicted for each example.
+- Imbalanced Classification - Imbalanced Classification refers to classification tasks where one variable has more examples over other variables.
 
-_Usage examples: spam-filters, language detection, finding similar documents, handwritten letters recognition, etc._
+_Usage examples: spam-filters, language detection, finding similar documents, handwritten letters recognition, Face (Male/ Female) Binary Classification, Emotion detection (Negative/ Positive), etc._
 
 #### 🤖 Logistic Regression
 
@@ -81,6 +86,11 @@ _Usage examples: intrusion detection, fraud detection, system health monitoring,
 - 📗 [Math | Anomaly Detection using Gaussian Distribution](homemade/anomaly_detection) - theory and links for further readings
 - ⚙️ [Code | Anomaly Detection using Gaussian Distribution](homemade/anomaly_detection/gaussian_anomaly_detection.py) - implementation example
 - ▶️ [Demo | Anomaly Detection](https://nbviewer.jupyter.org/github/trekhleb/homemade-machine-learning/blob/master/notebooks/anomaly_detection/anomaly_detection_gaussian_demo.ipynb) - find anomalies in server operational parameters like `latency` and `threshold`
+
+## Semi-Supervised Learning
+
+Semi-Supervised learning the dataset consists of target variable which has 50% values and 50% is empty (NaN). The percentage might differ according to datasets.
+
 
 ## Neural Network (NN)
 
