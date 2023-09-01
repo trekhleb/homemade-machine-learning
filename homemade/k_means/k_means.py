@@ -6,6 +6,7 @@ import numpy as np
 class KMeans:
     """K-Means Class"""
 
+    #Creating constructor
     def __init__(self, data, num_clusters):
         """K-Means class constructor.
 
