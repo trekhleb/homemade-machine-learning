@@ -13,7 +13,10 @@
 
 > _Read this in other languages:_ [_Español_](README.es-ES.md)
 
-> _You might be interested in 🤖 [Interactive Machine Learning Experiments](https://github.com/trekhleb/machine-learning-experiments)_
+
+> _You might be interested in:_
+> - _[Homemade GPT • JS](https://github.com/trekhleb/homemade-gpt-js)_
+> - _[Interactive Machine Learning Experiments](https://github.com/trekhleb/machine-learning-experiments)_
 
 _For Octave/MatLab version of this repository please check [machine-learning-octave](https://github.com/trekhleb/machine-learning-octave) project._
 
