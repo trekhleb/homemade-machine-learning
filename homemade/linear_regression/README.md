@@ -10,11 +10,51 @@
 
 ## Definition
 
-**Linear regression** is a linear model, e.g. a model that assumes a linear relationship between the input variables (_x_) and the single output variable (_y_). More specifically, that output variable (_y_) can be calculated from a linear combination of the input variables (_x_).
-
 ![Linear Regression](https://upload.wikimedia.org/wikipedia/commons/3/3a/Linear_regression.svg)
 
-On the image above there is an example of dependency between input variable _x_ and output variable _y_. The red line in the above graph is referred to as the best fit straight line. Based on the given data points (training examples), we try to plot a line that models the points the best. In the real world scenario we normally have more than one input variable.
+On the image above there is an example of dependency between input variable *x* and output variable *y*. The red line in the graph is referred to as the **best-fit straight line**. Based on the given data points (training examples), we try to plot a line that models the points as accurately as possible. In real-world scenarios, we often have more than one input variable.
+
+---
+
+## Simple Linear Regression (One Feature)
+
+For a single input feature, the relationship between input *x* and output *y* can be represented as:
+
+## y = mx + b
+
+### Where:
+
+#### **m (slope)**
+- The rate at which *y* changes with respect to *x*  
+- Determines the **steepness and direction** of the line  
+- If *m > 0* → line increases  
+- If *m < 0* → line decreases  
+
+#### **b (intercept)**
+- The value of *y* when *x = 0*  
+- Determines where the line **crosses the y-axis**
+
+---
+
+##  Analytical Solution
+
+The optimal values of slope (*m*) and intercept (*b*) can be calculated using:
+
+### 📐 Slope (m)
+
+$$
+m = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+$$
+
+### 📐 Intercept (b)
+
+$$
+b = \bar{y} - m \cdot \bar{x}
+$$
+
+Where:
+- x̄ = mean of input values  
+- ȳ = mean of output values
 
 ## Features (variables)
 
