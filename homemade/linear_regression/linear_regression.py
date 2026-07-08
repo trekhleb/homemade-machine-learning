@@ -145,7 +145,7 @@ class LinearRegression:
         reg_param = lambda_param * (theta_cut.T @ theta_cut)
 
         # Calculate current predictions cost.
-        cost = (1 / 2 * num_examples) * (delta.T @ delta + reg_param)
+        cost = (1 / (2 * num_examples)) * (delta.T @ delta + reg_param)
 
         # Let's extract cost value from the one and only cost numpy matrix cell.
         return cost[0][0]
